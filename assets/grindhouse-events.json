@@ -1,0 +1,285 @@
+{
+  "neighborhood_events": [
+    {
+      "id": 1,
+      "name": "Soirée Ciné de Quartier",
+      "place": "Place Kléber, Strasbourg",
+      "target_audience": "Familles du quartier",
+      "movie_id": 1,
+      "price": 5,
+      "background_image_url": "https://exemple.com/backgrounds/place_kleber_soiree_cine.jpg",
+      "accessibility": [
+        "Projection en plein air accessible en fauteuil roulant depuis les rues adjacentes",
+        "Cheminements sans marche",
+        "Chaises accessibles"
+      ],
+      "practical_info": [
+        "Toilettes publiques à proximité",
+        "Petite buvette associative sur place",
+        "Arrivée possible en tram et à vélo"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Ciné-Musical au Parc",
+      "place": "Parc de l’Orangerie, Strasbourg",
+      "target_audience": "Jeunes adultes du quartier",
+      "movie_id": 2,
+      "price": 6,
+      "background_image_url": "https://exemple.com/backgrounds/parc_orangerie_cine_musical.jpg",
+      "accessibility": [
+        "Chemins stabilisés",
+        "Entrées de plain-pied",
+        "Bancs proches de la zone de projection"
+      ],
+      "practical_info": [
+        "Stand de boissons sans alcool",
+        "Éclairage renforcé en fin de séance",
+        "Station de tram à quelques minutes à pied"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Nuit du Thriller en Bas d’Immeuble",
+      "place": "Cour d’immeuble, quartier Neudorf, Strasbourg",
+      "target_audience": "Amateurs de suspense",
+      "movie_id": 3,
+      "price": 5,
+      "background_image_url": "https://exemple.com/backgrounds/neudorf_cour_thriller.jpg",
+      "accessibility": [
+        "Accès par rampe depuis le trottoir",
+        "Portails maintenus ouverts pour les fauteuils roulants"
+      ],
+      "practical_info": [
+        "Chaises pliantes fournies",
+        "Point d’eau dans le hall",
+        "Sanitaires accessibles au rez-de-chaussée"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Cinéma au Bord du Rhin",
+      "place": "Jardin des Deux Rives, Strasbourg",
+      "target_audience": "Habitants du quartier",
+      "movie_id": 4,
+      "price": 4,
+      "background_image_url": "https://exemple.com/backgrounds/jardin_deux_rives_cinema.jpg",
+      "accessibility": [
+        "Zone de projection plane près des allées principales",
+        "Cheminements sans marche",
+        "Emplacements réservés aux personnes à mobilité réduite"
+      ],
+      "practical_info": [
+        "Food-truck local sur place",
+        "Éclairage de sécurité le long des allées",
+        "Recommandation de venir avec une couverture"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Soirée Jeux & Ciné de Quartier",
+      "place": "Parvis de la Médiathèque André Malraux, Strasbourg",
+      "target_audience": "Ados et jeunes adultes",
+      "movie_id": 5,
+      "price": 5,
+      "background_image_url": "https://exemple.com/backgrounds/malraux_jeux_cine.jpg",
+      "accessibility": [
+        "Accès de plain-pied depuis l’arrêt de tram Winston Churchill",
+        "Large espace dégagé sans obstacles"
+      ],
+      "practical_info": [
+        "Tables hautes à disposition",
+        "Prises de courant disponibles",
+        "Sanitaires de la médiathèque accessibles pendant l’évènement"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Ciné-Gourmand de la Krutenau",
+      "place": "Place d’Austerlitz, Strasbourg",
+      "target_audience": "Habitants et commerçants du quartier",
+      "movie_id": 6,
+      "price": 8,
+      "background_image_url": "https://exemple.com/backgrounds/krutenau_cine_gourmand.jpg",
+      "accessibility": [
+        "Place pavée avec zones planes",
+        "Accès sans marche depuis les rues voisines"
+      ],
+      "practical_info": [
+        "Stands de restauration locale",
+        "Chaises et tables à disposition",
+        "Sanitaires accessibles dans un équipement public proche"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Magie & Film au Parc",
+      "place": "Parc de la Citadelle, Strasbourg",
+      "target_audience": "Jeunes adultes du quartier",
+      "movie_id": 7,
+      "price": 6,
+      "background_image_url": "https://exemple.com/backgrounds/parc_citadelle_magie_film.jpg",
+      "accessibility": [
+        "Entrées du parc accessibles aux fauteuils roulants",
+        "Allées larges et éclairées",
+        "Scène équipée d’une rampe"
+      ],
+      "practical_info": [
+        "Buvette de quartier tenue par une association",
+        "Bénévoles pour orienter le public",
+        "Prévoir un vêtement chaud pour la fin de soirée"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Soirée Sci-Fi du Neuhof",
+      "place": "Esplanade de quartier, Neuhof, Strasbourg",
+      "target_audience": "Fans de science-fiction",
+      "movie_id": 8,
+      "price": 5,
+      "background_image_url": "https://exemple.com/backgrounds/neuhof_scifi.jpg",
+      "accessibility": [
+        "Esplanade de plain-pied",
+        "Revêtement antidérapant",
+        "Accès direct depuis le trottoir"
+      ],
+      "practical_info": [
+        "Chaises pliantes fournies",
+        "Prêt de couvertures",
+        "Sanitaires du centre socio-culturel voisin accessibles"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Ciné des Héros du Quotidien",
+      "place": "Place du Marché, quartier de la Meinau, Strasbourg",
+      "target_audience": "Familles du quartier",
+      "movie_id": 9,
+      "price": 4,
+      "background_image_url": "https://exemple.com/backgrounds/meinau_cine_heros.jpg",
+      "accessibility": [
+        "Place de marché de plain-pied",
+        "Accès facilité pour poussettes",
+        "Accès facilité pour fauteuils roulants"
+      ],
+      "practical_info": [
+        "Buvette associative sur place",
+        "Point d’eau potable",
+        "Secouristes bénévoles présents pendant la séance"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Nuit des Archives au Centre-Ville",
+      "place": "Cour intérieure, quartier Grande Île, Strasbourg",
+      "target_audience": "Cinéphiles du quartier",
+      "movie_id": 10,
+      "price": 6,
+      "background_image_url": "https://exemple.com/backgrounds/grande_ile_archives.jpg",
+      "accessibility": [
+        "Accès par rampe depuis la rue",
+        "Porche suffisamment large pour les fauteuils roulants"
+      ],
+      "practical_info": [
+        "Chaises et bancs disponibles",
+        "Sanitaires accessibles au rez-de-chaussée",
+        "Éclairage discret durant la projection"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Ciné-Soirée du Port du Rhin",
+      "place": "Esplanade du Port du Rhin, Strasbourg",
+      "target_audience": "Habitants du front de Rhin",
+      "movie_id": 11,
+      "price": 7,
+      "background_image_url": "https://exemple.com/backgrounds/port_du_rhin_cine.jpg",
+      "accessibility": [
+        "Accès sans marche depuis l’arrêt de tram Port du Rhin",
+        "Grande esplanade plane",
+        "Zone réservée aux personnes à mobilité réduite"
+      ],
+      "practical_info": [
+        "Toilettes publiques accessibles",
+        "Signalétique de sécurité sur le site",
+        "Arceaux vélo à proximité"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Frissons au Parc du Heyritz",
+      "place": "Parc du Heyritz, Strasbourg",
+      "target_audience": "Jeunes adultes du quartier",
+      "movie_id": 12,
+      "price": 5,
+      "background_image_url": "https://exemple.com/backgrounds/heyritz_frissons.jpg",
+      "accessibility": [
+        "Allées stabilisées",
+        "Accès de plain-pied depuis le boulevard de Lyon"
+      ],
+      "practical_info": [
+        "Chaises à disposition",
+        "Petite buvette sur place",
+        "Sanitaires publics à l’entrée du parc",
+        "Recommandation d’apporter une couverture"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Ciné Fresques Urbaines à Cronenbourg",
+      "place": "Placette de quartier, Cronenbourg, Strasbourg",
+      "target_audience": "Étudiants et jeunes actifs",
+      "movie_id": 13,
+      "price": 4,
+      "background_image_url": "https://exemple.com/backgrounds/cronenbourg_fresques.jpg",
+      "accessibility": [
+        "Rampe large depuis le trottoir",
+        "Sol nivelé sur toute la placette"
+      ],
+      "practical_info": [
+        "Assises improvisées (palettes, bancs)",
+        "Toilettes du centre culturel voisin accessibles",
+        "Parking vélo sécurisé sur place"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Polar sur la Place Broglie",
+      "place": "Place Broglie, Strasbourg",
+      "target_audience": "Cinéphiles du centre-ville",
+      "movie_id": 14,
+      "price": 6,
+      "background_image_url": "https://exemple.com/backgrounds/place_broglie_polar.jpg",
+      "accessibility": [
+        "Place plate accessible depuis plusieurs rues",
+        "Accès sans marche",
+        "Zones de circulation dégagées"
+      ],
+      "practical_info": [
+        "Chaises pliantes fournies",
+        "Toilettes publiques à proximité",
+        "Présence d’agents de médiation",
+        "Contrôle du niveau sonore pour respecter le voisinage"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Soirée Jardins Partagés à l’Esplanade",
+      "place": "Jardins partagés de l’Esplanade, Strasbourg",
+      "target_audience": "Voisins et jardiniers du quartier",
+      "movie_id": 15,
+      "price": 5,
+      "background_image_url": "https://exemple.com/backgrounds/esplanade_jardins_partages.jpg",
+      "accessibility": [
+        "Entrée de plain-pied",
+        "Cheminements dégagés autour des parcelles de jardin"
+      ],
+      "practical_info": [
+        "Bancs et chaises disponibles",
+        "Point d’eau sur place",
+        "Toilettes du local associatif accessibles",
+        "Tri sélectif organisé pendant l’évènement"
+      ]
+    }
+  ]
+}
