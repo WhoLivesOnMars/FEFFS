@@ -1,3 +1,4 @@
+import tw from 'twrnc';
 import {View, Text} from "react-native";
 import {Component} from "react";
 
@@ -9,7 +10,7 @@ export class HomeScreen extends Component {
     render() {
         return (
             <View>
-                <Text>Une superbe page d'accueil.</Text>
+                <Text style={tw`text-5xl text-red-900 bg-blue-500`}>Une superbe page d'accueil.</Text>
             </View>
         );
     }
