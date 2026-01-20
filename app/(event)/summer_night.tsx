@@ -1,5 +1,5 @@
-import {SummerNightScreen} from "@/src/features/event/SummerNightReadAllScreen";
+import {SummerNightReadOneScreen} from "@/src/features/event/SummerNightReadOneScreen";
 
 export default function SummerNight() {
-    return <SummerNightScreen />;
+    return <SummerNightReadOneScreen />;
 }
