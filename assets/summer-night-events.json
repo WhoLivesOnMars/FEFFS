@@ -77,7 +77,7 @@
       "place": "Place du Numérique, Montpellier",
       "target_audience": "Étudiants et jeunes adultes",
       "movie_id": 5,
-      "year": 2025,
+      "year": 2022,
       "screening_datetime": "2025-08-09T21:15:00",
       "accessibility": [
         "Accès de plain-pied depuis l’arrêt de tram",
@@ -95,7 +95,7 @@
       "place": "Port de Pêche, Saint-Malo",
       "target_audience": "Amateurs de gastronomie",
       "movie_id": 6,
-      "year": 2025,
+      "year": 2022,
       "screening_datetime": "2025-08-16T21:15:00",
       "accessibility": [
         "Plancher avec rampe d’accès",
@@ -205,7 +205,7 @@
       "place": "Jardin des Lumières, Nantes",
       "target_audience": "Amateurs de films d’horreur",
       "movie_id": 12,
-      "year": 2022,
+      "year": 2018,
       "screening_datetime": "2022-07-23T23:00:00",
       "accessibility": [
         "Allées larges et stabilisées",
