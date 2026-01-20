@@ -29,7 +29,7 @@ export class NewsSection extends Component<any, State> {
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={tw`justify-between items-center gap-4 px-6`} style={tw` bg-gray-800 w-full h-50`}>
                     { this.state.news.map((item) => {
                         return (
-                            <NewsCard key={item.id} id={item.id} source={{ uri: item.thumbnail_image_url }} title={item.name} chapo={item.chapo} />
+                            <NewsCard key={item.id} id={item.id} />
                         );
                     }) }
                 </ScrollView>
