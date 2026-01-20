@@ -58,7 +58,6 @@ export class SummerNightReadOneScreen extends Component<
   }
 
   render() {
-    // ✅ Pour l’instant : 1er event (plus tard => id en param)
     const event: SummerNightEvent = (eventsData as any).summer_night_events[0];
 
     const movie: Movie | undefined = (moviesData as any).movies.find(
@@ -128,7 +127,6 @@ export class SummerNightReadOneScreen extends Component<
           </View>
         </View>
 
-        {/* ✅ SCROLL (doit être flex-1) */}
         <ScrollView
           style={tw`flex-1`}
           contentContainerStyle={tw`pb-24`}
@@ -150,9 +148,9 @@ export class SummerNightReadOneScreen extends Component<
 
             {/* Badge date */}
             <View
-              style={tw`mt-3 self-start bg-orange-600 px-3 py-2 rounded-full`}
+              style={tw`mt-3 self-start bg-orange-100 px-3 py-2 rounded-lg border-[1px] border-orange-200`}
             >
-              <Text style={tw`text-white font-semibold text-xs`}>{badgeLabel}</Text>
+              <Text style={tw`text-orange-700 font-semibold text-xs`}>{badgeLabel}</Text>
             </View>
 
             {/* Title */}
@@ -179,14 +177,14 @@ export class SummerNightReadOneScreen extends Component<
                   this.setState({ addedToPlanning: !this.state.addedToPlanning })
                 }
                 style={({ pressed }) =>
-                  tw`w-full py-4 rounded-2xl items-center ${
-                    pressed ? "bg-orange-700" : "bg-orange-600"
+                  tw`w-full py-4 rounded-lg items-center ${
+                    pressed ? "bg-orange-200" : "bg-orange-200 border-2 border-orange-500"
                   }`
                 }
               >
                 <View style={tw`flex-row items-center`}>
-                  <Ionicons name="calendar-outline" size={18} color="#ffffff" />
-                  <Text style={tw`ml-2 text-white font-bold`}>
+                  <Ionicons name="calendar" size={20} color="#1E1E1E" />
+                  <Text style={tw`ml-2 text-base font-semibold text-slate-900`}>
                     {this.state.addedToPlanning
                       ? "Ajouté au planning"
                       : "Ajouter au planning"}
