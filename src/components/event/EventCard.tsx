@@ -7,7 +7,7 @@ interface Props {
     title: string;
 }
 
-export class Card extends Component<Props> {
+export class EventCard extends Component<Props> {
     render () {
         const {source, title} = this.props;
 
