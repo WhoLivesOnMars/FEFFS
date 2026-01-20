@@ -1,12 +1,22 @@
 import {Component} from "react";
-import {View, Text, ScrollView} from "react-native";
+import {View, Text, ScrollView, FlatList} from "react-native";
 import tw from "twrnc";
 import {Link} from "expo-router";
 import {NewsCard} from "@/src/components/news/NewsCard";
+import {I_News} from "@/src/interfaces/I_News";
+import newsData from "@/assets/news.json";
 
-export class NewsSection extends Component {
+interface State {
+    news: I_News[];
+}
+
+export class NewsSection extends Component<any, State> {
     constructor(props: any) {
         super(props);
+        this.state = {
+            news: newsData.news as I_News[]
+        }
+        console.log(this.state.news);
     }
 
     render() {
@@ -17,11 +27,11 @@ export class NewsSection extends Component {
                     <Link href="/(news)">Toutes les actualités</Link>
                 </View>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={tw`justify-between items-center gap-4 px-6`} style={tw` bg-gray-800 w-full h-50`}>
-                    <NewsCard source={{ uri: 'https://picsum.photos/200' }} title='À vos candidatures !' chapo="Jusqu'au 20 Février 2026." />
-                    <NewsCard source={{ uri: 'https://picsum.photos/200' }} title='À vos candidatures !' chapo="Jusqu'au 20 Février 2026." />
-                    <NewsCard source={{ uri: 'https://picsum.photos/200' }} title='À vos candidatures !' chapo="Jusqu'au 20 Février 2026." />
-                    <NewsCard source={{ uri: 'https://picsum.photos/200' }} title='À vos candidatures !' chapo="Jusqu'au 20 Février 2026." />
-                    <NewsCard source={{ uri: 'https://picsum.photos/200' }} title='À vos candidatures !' chapo="Jusqu'au 20 Février 2026." />
+                    { this.state.news.map((item) => {
+                        return (
+                            <NewsCard key={item.id} source={{ uri: item.thumbnail_image_url }} title={item.name} chapo={item.chapo} />
+                        );
+                    }) }
                 </ScrollView>
             </View>
         );
