@@ -10,7 +10,11 @@
         "À partir du mois de juin, plusieurs séances de cinéma en plein air sont organisées chaque semaine dans différents lieux du quartier. L’objectif est de proposer un moment convivial et accessible à tous, sans réservation obligatoire.",
         "Les programmateurs ont concocté une sélection de films variés, allant des classiques du cinéma d’auteur aux succès récents, en passant par des animations familiales. Chaque séance est accompagnée d’une courte présentation pour replacer le film dans son contexte.",
         "Des associations locales assurent la buvette et la petite restauration, tandis que des bénévoles sont présents sur place pour orienter le public et répondre aux questions pratiques. En cas de mauvais temps, certaines projections peuvent être déplacées en intérieur."
-      ]
+      ],
+      "cta": {
+        "icon": "play-circle-outline",
+        "label": "Voir le programme"
+      }
     },
     {
       "id": 2,
@@ -22,7 +26,11 @@
         "Pendant tout le mois de septembre, un cycle de films documentaires et de fictions engagées est proposé autour des questions écologiques. Chaque séance se concentre sur un thème précis : transition énergétique, alimentation durable, mobilités douces ou encore justice climatique.",
         "À l’issue des projections, des temps d’échange sont organisés avec des associations, des chercheurs et des habitants impliqués dans des projets concrets. Ces rencontres permettent de relier les enjeux mondiaux aux actions possibles à l’échelle du quartier.",
         "Les séances sont ouvertes à tous, avec une participation libre au chapeau. Un espace d’information présente également les ressources locales : jardins partagés, ateliers de réparation, vélo-écoles et dispositifs d’accompagnement aux projets citoyens."
-      ]
+      ],
+      "cta": {
+        "icon": "leaf-outline",
+        "label": "Découvrir le cycle"
+      }
     },
     {
       "id": 3,
@@ -34,7 +42,11 @@
         "En partenariat avec une association d’éducation à l’image, des ateliers gratuits sont proposés aux collégiens et lycéens du quartier. Encadrés par des professionnels, les participants découvrent les différentes étapes de création d’un film, de l’idée de départ jusqu’à la projection.",
         "Les groupes travaillent en petites équipes afin de favoriser la coopération et la prise de parole de chacun. Les thématiques abordées sont choisies avec les jeunes : vie de quartier, amitié, engagement, humour ou science-fiction.",
         "En fin de session, une soirée de restitution permet de présenter les courts-métrages réalisés sur grand écran, en présence des familles, des habitants et des partenaires. Les films restent ensuite disponibles en ligne sur une plateforme dédiée."
-      ]
+      ],
+      "cta": {
+        "icon": "videocam-outline",
+        "label": "S'inscrire à un atelier"
+      }
     },
     {
       "id": 4,
@@ -46,7 +58,11 @@
         "Cette saison, une attention particulière est portée à l’accessibilité des évènements de plein air. Plusieurs sites ont été aménagés avec des rampes, des zones réservées aux personnes à mobilité réduite et des cheminements mieux identifiés.",
         "Des pictogrammes indiquent désormais clairement les sanitaires adaptés, les points d’eau et les espaces de repos. Sur certains évènements, un accueil spécifique est proposé pour accompagner les personnes ayant besoin d’un peu plus de temps pour s’installer.",
         "L’équipe organisatrice recueille également les retours des spectateurs pour améliorer progressivement le dispositif. Un formulaire en ligne permet de partager des suggestions, des besoins spécifiques ou de signaler des difficultés rencontrées."
-      ]
+      ],
+      "cta": {
+        "icon": "accessibility-outline",
+        "label": "Donner son avis"
+      }
     },
     {
       "id": 5,
@@ -58,7 +74,11 @@
         "La programmation de l’été se terminera par une grande soirée de clôture en plein air. Au programme : accueil musical, projection d’un film choisi par les habitants et moment convivial autour d’une boisson partagée.",
         "Le choix du film est soumis au vote via une plateforme en ligne et des urnes disposées dans plusieurs lieux du quartier. Les habitants peuvent ainsi exprimer leurs préférences parmi une sélection de titres adaptés au plus grand nombre.",
         "En fin de séance, l’équipe reviendra sur les moments forts de la saison, les chiffres de fréquentation et les projets à venir. L’objectif est d’installer un rendez-vous annuel qui évolue chaque année en fonction des envies du quartier."
-      ]
+      ],
+      "cta": {
+        "icon": "star-outline",
+        "label": "Voter pour le film"
+      }
     }
   ]
 }
