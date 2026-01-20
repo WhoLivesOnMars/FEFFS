@@ -53,7 +53,7 @@ export class NewsReadOneScreen extends Component<Props, State> {
                 </View>
                 <TouchableOpacity style={tw`flex flex-row justify-center items-center gap-2 mt-4 mb-20 bg-orange-200 py-2 border-2 border-orange-500 rounded-lg`}>
                     <Ionicons name={this.state.news.cta.icon} size={32} />
-                    <Text style={tw`text-base`}>{this.state.news.cta.label}</Text>
+                    <Text style={tw`text-base font-semibold`}>{this.state.news.cta.label}</Text>
                 </TouchableOpacity>
             </ScrollView>
         );
