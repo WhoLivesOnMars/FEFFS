@@ -13,7 +13,7 @@ export class NewsCard extends Component<Props> {
         const {source, title, chapo} = this.props;
 
         return (
-            <View style={tw`flex flex-col gap-2 h-40`}>
+            <View style={tw`flex flex-col gap-2 w-45 h-40`}>
                 <View style={tw`flex-1 border-transparent rounded-lg overflow-hidden`}>
                     <Image style={tw`w-full h-full`} source={ source } resizeMode="cover" />
                 </View>
@@ -22,7 +22,7 @@ export class NewsCard extends Component<Props> {
                         { title }
                     </Text>
                     <Text style={tw`lowercase text-gray-300 text-xs`}>
-                        { chapo }
+                        { chapo.slice(0, 24) + '...' }
                     </Text>
                 </View>
             </View>
