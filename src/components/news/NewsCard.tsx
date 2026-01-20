@@ -1,8 +1,10 @@
-import {ImageSourcePropType, View, Text, Image} from "react-native";
+import {ImageSourcePropType, View, Text, Image, TouchableOpacity} from "react-native";
 import {Component} from "react";
 import tw from "twrnc";
+import {router} from "expo-router";
 
 interface Props {
+    id: number;
     source: ImageSourcePropType;
     title: string;
     chapo: string;
@@ -10,10 +12,10 @@ interface Props {
 
 export class NewsCard extends Component<Props> {
     render() {
-        const {source, title, chapo} = this.props;
+        const {id, source, title, chapo} = this.props;
 
         return (
-            <View style={tw`flex flex-col gap-2 w-45 h-40`}>
+            <TouchableOpacity style={tw`flex flex-col gap-2 w-45 h-40`} onPress={() => router.push(`/(news)/${id}`)}>
                 <View style={tw`flex-1 border-transparent rounded-lg overflow-hidden`}>
                     <Image style={tw`w-full h-full`} source={ source } resizeMode="cover" />
                 </View>
@@ -25,7 +27,7 @@ export class NewsCard extends Component<Props> {
                         { chapo.slice(0, 24) + '...' }
                     </Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 }
