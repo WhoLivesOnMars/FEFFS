@@ -1,4 +1,4 @@
-import {View} from "react-native";
+import {Image, View} from "react-native";
 import {Component} from "react";
 import {EventsOfTheYearSection} from "@/src/features/home/sections/EventsOfTheYearSection";
 import {NewsSection} from "@/src/features/home/sections/NewsSection";
@@ -13,6 +13,9 @@ export class HomeScreen extends Component {
     render() {
         return (
             <View>
+                <View style={tw`w-full h-64 border-transparent rounded-b-lg overflow-hidden`}>
+                    <Image style={tw`w-full h-full`} source={{ uri: 'https://picsum.photos/1920/1080' }} resizeMode="cover" />
+                </View>
                 <EventsOfTheYearSection />
                 <NewsSection />
                 <InformationSection />
