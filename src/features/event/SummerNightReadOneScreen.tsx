@@ -48,21 +48,25 @@ function yearFromIso(iso: string) {
   return String(new Date(iso).getFullYear());
 }
 
-export class SummerNightReadOneScreen extends Component<
-  {},
-  { addedToPlanning: boolean }
-> {
-  constructor(props: {}) {
+type Props = { eventId?: string };
+type State = { addedToPlanning: boolean };
+
+export class SummerNightReadOneScreen extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { addedToPlanning: false };
   }
 
   render() {
-    const event: SummerNightEvent = (eventsData as any).summer_night_events[0];
+    const events: SummerNightEvent[] = (eventsData as any).summer_night_events;
+    const movies: Movie[] = (moviesData as any).movies;
 
-    const movie: Movie | undefined = (moviesData as any).movies.find(
-      (m: Movie) => m.id === event.movie_id
-    );
+    const eventIdNum = this.props.eventId ? Number(this.props.eventId) : NaN;
+
+    const event =
+      events.find((e) => e.id === eventIdNum) ?? events[0]; // fallback
+
+    const movie = movies.find((m) => m.id === event.movie_id);
 
     const imageUrl = movie?.image_url;
     const badgeLabel = formatDateBadge(event.screening_datetime);
@@ -95,16 +99,14 @@ export class SummerNightReadOneScreen extends Component<
 
     const releaseYear = yearFromIso(event.screening_datetime);
     const duration = movie?.duration ?? "—";
-    const directors = movie?.directors?.length
-      ? movie.directors.join(", ")
-      : "—";
+    const directors = movie?.directors?.length ? movie.directors.join(", ") : "—";
     const cast = movie?.main_cast?.length ? movie.main_cast.join(", ") : "—";
     const genres = movie?.genres?.length ? movie.genres.join(", ") : "—";
     const versions = movie?.versions?.length ? movie.versions.join(" · ") : "—";
 
     return (
       <View style={tw`flex-1 bg-white`}>
-        {/* HEADER (fixe) */}
+        {/* HEADER fixe */}
         <View style={tw`px-4 pt-4 pb-2`}>
           <View style={tw`flex-row items-center`}>
             <Pressable
@@ -148,9 +150,11 @@ export class SummerNightReadOneScreen extends Component<
 
             {/* Badge date */}
             <View
-              style={tw`mt-3 self-start bg-orange-100 px-3 py-2 rounded-lg border-[1px] border-orange-200`}
+              style={tw`mt-3 self-start bg-orange-100 px-3 py-2 rounded-lg border border-orange-200`}
             >
-              <Text style={tw`text-orange-700 font-semibold text-xs`}>{badgeLabel}</Text>
+              <Text style={tw`text-orange-700 font-semibold text-xs`}>
+                {badgeLabel}
+              </Text>
             </View>
 
             {/* Title */}
@@ -232,9 +236,7 @@ export class SummerNightReadOneScreen extends Component<
 
               <View style={tw`mt-2 flex-row items-center`}>
                 <Ionicons name="people-outline" size={14} color="#64748b" />
-                <Text style={tw`ml-2 text-slate-600 text-xs`}>
-                  Avec : {cast}
-                </Text>
+                <Text style={tw`ml-2 text-slate-600 text-xs`}>Avec : {cast}</Text>
               </View>
 
               <View style={tw`mt-2 flex-row items-center`}>
