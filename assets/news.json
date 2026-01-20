@@ -2,8 +2,8 @@
   "news": [
     {
       "id": 1,
-      "name": "Les nuits d’été au cinéma de quartier",
-      "chapo": "Tout l’été, des projections en plein air transforment les places et parcs du quartier en véritables salles de cinéma à la belle étoile.",
+      "name": "Les nuits d’été",
+      "chapo": "Projections en plein air...",
       "thumbnail_image_url": "https://picsum.photos/200",
       "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
@@ -14,8 +14,8 @@
     },
     {
       "id": 2,
-      "name": "Un nouveau cycle de films engagés sur l’écologie",
-      "chapo": "Une série de projections-débat met en lumière les enjeux climatiques et les initiatives locales pour un quartier plus durable.",
+      "name": "Un nouveau cycle",
+      "chapo": "Quelques mots sur l'actu'.",
       "thumbnail_image_url": "https://picsum.photos/200",
       "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
@@ -26,8 +26,8 @@
     },
     {
       "id": 3,
-      "name": "Des ateliers cinéma pour les jeunes du quartier",
-      "chapo": "Tout l’été, les jeunes de 12 à 17 ans peuvent s’initier à l’écriture de scénarios, au tournage et au montage de courts-métrages.",
+      "name": "Ateliers cinéma",
+      "chapo": "Tournage et court-métrage !",
       "thumbnail_image_url": "https://picsum.photos/200",
       "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
@@ -38,8 +38,8 @@
     },
     {
       "id": 4,
-      "name": "Accessibilité renforcée sur les évènements plein air",
-      "chapo": "Rampes, signalétique adaptée et accompagnement sur place : les projections en extérieur intègrent de nouvelles mesures d’accessibilité.",
+      "name": "Accessibilité",
+      "chapo": "Rampes, signalétique adaptée et accompagnement...",
       "thumbnail_image_url": "https://picsum.photos/200",
       "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
@@ -50,8 +50,8 @@
     },
     {
       "id": 5,
-      "name": "Une grande soirée de clôture sous les étoiles",
-      "chapo": "Pour célébrer la fin de la saison estivale, une projection spéciale réunira habitants, bénévoles et partenaires autour d’un film surprise.",
+      "name": "Soirée de clôture",
+      "chapo": "Pour célébrer la fin de la saison estivale.",
       "thumbnail_image_url": "https://picsum.photos/200",
       "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
