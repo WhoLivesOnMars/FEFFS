@@ -3,6 +3,7 @@ import {Component} from "react";
 import {EventsOfTheYearSection} from "@/src/features/home/sections/EventsOfTheYearSection";
 import {NewsSection} from "@/src/features/home/sections/NewsSection";
 import tw from "twrnc";
+import {InformationSection} from "@/src/features/home/sections/InformationSection";
 
 export class HomeScreen extends Component {
     constructor(props: any) {
@@ -14,6 +15,7 @@ export class HomeScreen extends Component {
             <View>
                 <EventsOfTheYearSection />
                 <NewsSection />
+                <InformationSection />
             </View>
         );
     }
