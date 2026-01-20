@@ -16,7 +16,7 @@ export class EventCard extends Component<Props> {
                 <View style={tw`flex-2`}>
                     <Image style={tw`w-full h-full`} source={ source } resizeMode="cover" />
                 </View>
-                <View style={tw`flex-1 bg-orange-500 justify-center px-2`}>
+                <View style={tw`flex-1 bg-orange-500 justify-center px-2 pt-1 pb-2`}>
                     <Text style={tw`text-center text-white text-xs`}>
                         { title }
                     </Text>
