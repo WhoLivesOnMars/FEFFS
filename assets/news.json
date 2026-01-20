@@ -2,10 +2,10 @@
   "news": [
     {
       "id": 1,
-      "name": "Les nuits d’été au cinéma de quartier",
-      "chapo": "Tout l’été, des projections en plein air transforment les places et parcs du quartier en véritables salles de cinéma à la belle étoile.",
-      "thumbnail_image_url": "https://exemple.com/images/actus/cine_quartier_vignette.jpg",
-      "banner_image_url": "https://exemple.com/images/actus/cine_quartier_banniere.jpg",
+      "name": "Les nuits d’été",
+      "chapo": "Projections en plein air...",
+      "thumbnail_image_url": "https://picsum.photos/200",
+      "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
         "À partir du mois de juin, plusieurs séances de cinéma en plein air sont organisées chaque semaine dans différents lieux du quartier. L’objectif est de proposer un moment convivial et accessible à tous, sans réservation obligatoire.",
         "Les programmateurs ont concocté une sélection de films variés, allant des classiques du cinéma d’auteur aux succès récents, en passant par des animations familiales. Chaque séance est accompagnée d’une courte présentation pour replacer le film dans son contexte.",
@@ -14,10 +14,10 @@
     },
     {
       "id": 2,
-      "name": "Un nouveau cycle de films engagés sur l’écologie",
-      "chapo": "Une série de projections-débat met en lumière les enjeux climatiques et les initiatives locales pour un quartier plus durable.",
-      "thumbnail_image_url": "https://exemple.com/images/actus/cycle_ecologie_vignette.jpg",
-      "banner_image_url": "https://exemple.com/images/actus/cycle_ecologie_banniere.jpg",
+      "name": "Un nouveau cycle",
+      "chapo": "Quelques mots sur l'actu'.",
+      "thumbnail_image_url": "https://picsum.photos/200",
+      "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
         "Pendant tout le mois de septembre, un cycle de films documentaires et de fictions engagées est proposé autour des questions écologiques. Chaque séance se concentre sur un thème précis : transition énergétique, alimentation durable, mobilités douces ou encore justice climatique.",
         "À l’issue des projections, des temps d’échange sont organisés avec des associations, des chercheurs et des habitants impliqués dans des projets concrets. Ces rencontres permettent de relier les enjeux mondiaux aux actions possibles à l’échelle du quartier.",
@@ -26,10 +26,10 @@
     },
     {
       "id": 3,
-      "name": "Des ateliers cinéma pour les jeunes du quartier",
-      "chapo": "Tout l’été, les jeunes de 12 à 17 ans peuvent s’initier à l’écriture de scénarios, au tournage et au montage de courts-métrages.",
-      "thumbnail_image_url": "https://exemple.com/images/actus/ateliers_jeunes_vignette.jpg",
-      "banner_image_url": "https://exemple.com/images/actus/ateliers_jeunes_banniere.jpg",
+      "name": "Ateliers cinéma",
+      "chapo": "Tournage et court-métrage !",
+      "thumbnail_image_url": "https://picsum.photos/200",
+      "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
         "En partenariat avec une association d’éducation à l’image, des ateliers gratuits sont proposés aux collégiens et lycéens du quartier. Encadrés par des professionnels, les participants découvrent les différentes étapes de création d’un film, de l’idée de départ jusqu’à la projection.",
         "Les groupes travaillent en petites équipes afin de favoriser la coopération et la prise de parole de chacun. Les thématiques abordées sont choisies avec les jeunes : vie de quartier, amitié, engagement, humour ou science-fiction.",
@@ -38,10 +38,10 @@
     },
     {
       "id": 4,
-      "name": "Accessibilité renforcée sur les évènements plein air",
-      "chapo": "Rampes, signalétique adaptée et accompagnement sur place : les projections en extérieur intègrent de nouvelles mesures d’accessibilité.",
-      "thumbnail_image_url": "https://exemple.com/images/actus/accessibilite_vignette.jpg",
-      "banner_image_url": "https://exemple.com/images/actus/accessibilite_banniere.jpg",
+      "name": "Accessibilité",
+      "chapo": "Rampes, signalétique adaptée et accompagnement...",
+      "thumbnail_image_url": "https://picsum.photos/200",
+      "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
         "Cette saison, une attention particulière est portée à l’accessibilité des évènements de plein air. Plusieurs sites ont été aménagés avec des rampes, des zones réservées aux personnes à mobilité réduite et des cheminements mieux identifiés.",
         "Des pictogrammes indiquent désormais clairement les sanitaires adaptés, les points d’eau et les espaces de repos. Sur certains évènements, un accueil spécifique est proposé pour accompagner les personnes ayant besoin d’un peu plus de temps pour s’installer.",
@@ -50,10 +50,10 @@
     },
     {
       "id": 5,
-      "name": "Une grande soirée de clôture sous les étoiles",
-      "chapo": "Pour célébrer la fin de la saison estivale, une projection spéciale réunira habitants, bénévoles et partenaires autour d’un film surprise.",
-      "thumbnail_image_url": "https://exemple.com/images/actus/soiree_cloture_vignette.jpg",
-      "banner_image_url": "https://exemple.com/images/actus/soiree_cloture_banniere.jpg",
+      "name": "Soirée de clôture",
+      "chapo": "Pour célébrer la fin de la saison estivale.",
+      "thumbnail_image_url": "https://picsum.photos/200",
+      "banner_image_url": "https://picsum.photos/1920/1080",
       "paragraphs": [
         "La programmation de l’été se terminera par une grande soirée de clôture en plein air. Au programme : accueil musical, projection d’un film choisi par les habitants et moment convivial autour d’une boisson partagée.",
         "Le choix du film est soumis au vote via une plateforme en ligne et des urnes disposées dans plusieurs lieux du quartier. Les habitants peuvent ainsi exprimer leurs préférences parmi une sélection de titres adaptés au plus grand nombre.",
