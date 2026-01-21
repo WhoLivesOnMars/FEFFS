@@ -1,5 +1,6 @@
-import {SummerNightScreen} from "@/src/features/event/SummerNightScreen";
+import React from "react";
+import { SummerNightReadAllScreen } from "../../src/features/event/SummerNightReadAllScreen";
 
-export default function SummerNight() {
-    return <SummerNightScreen />;
+export default function SummerNightListingRoute() {
+  return <SummerNightReadAllScreen />;
 }

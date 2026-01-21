@@ -5,6 +5,8 @@
       "place": "Parc Central, Strasbourg",
       "target_audience": "Familles et groupes d’amis",
       "movie_id": 1,
+      "year": 2025,
+      "screening_datetime": "2025-07-12T21:30:00",
       "accessibility": [
         "Chemins accessibles en fauteuil roulant",
         "Places réservées pour personnes à mobilité réduite",
@@ -21,6 +23,8 @@
       "place": "Jardin des Arts, Paris",
       "target_audience": "Amateurs de musique",
       "movie_id": 2,
+      "year": 2025,
+      "screening_datetime": "2025-07-19T21:30:00",
       "accessibility": [
         "Entrée de plain-pied",
         "Signalétique claire dans le jardin",
@@ -37,6 +41,8 @@
       "place": "Esplanade des Remparts, Lyon",
       "target_audience": "Fans de thrillers",
       "movie_id": 3,
+      "year": 2025,
+      "screening_datetime": "2025-07-26T21:30:00",
       "accessibility": [
         "Zone de projection plane",
         "Ascenseur depuis le parking souterrain",
@@ -53,6 +59,8 @@
       "place": "Berges du Rhin, Strasbourg",
       "target_audience": "Public familial",
       "movie_id": 4,
+      "year": 2025,
+      "screening_datetime": "2025-08-02T21:15:00",
       "accessibility": [
         "Chemins aménagés avec rampes",
         "Toilettes accessibles",
@@ -69,6 +77,8 @@
       "place": "Place du Numérique, Montpellier",
       "target_audience": "Étudiants et jeunes adultes",
       "movie_id": 5,
+      "year": 2022,
+      "screening_datetime": "2025-08-09T21:15:00",
       "accessibility": [
         "Accès de plain-pied depuis l’arrêt de tram",
         "Cheminements bien éclairés",
@@ -85,6 +95,8 @@
       "place": "Port de Pêche, Saint-Malo",
       "target_audience": "Amateurs de gastronomie",
       "movie_id": 6,
+      "year": 2022,
+      "screening_datetime": "2025-08-16T21:15:00",
       "accessibility": [
         "Plancher avec rampe d’accès",
         "Sanitaires adaptés",
@@ -101,6 +113,8 @@
       "place": "Square des Illusions, Toulouse",
       "target_audience": "Jeunes adultes",
       "movie_id": 7,
+      "year": 2025,
+      "screening_datetime": "2025-08-23T21:00:00",
       "accessibility": [
         "Accès par rampes sécurisées",
         "Zones réservées aux personnes à mobilité réduite",
@@ -108,7 +122,7 @@
       ],
       "practical_info": [
         "Animation de magie avant la projection",
-        "Bar sans alcool et street‑food",
+        "Bar sans alcool et street-food",
         "Accès facile en bus et métro"
       ]
     },
@@ -117,6 +131,8 @@
       "place": "Place de la Glace, Grenoble",
       "target_audience": "Fans de science-fiction",
       "movie_id": 8,
+      "year": 2025,
+      "screening_datetime": "2025-08-30T21:00:00",
       "accessibility": [
         "Sol antidérapant",
         "Accès sans marche",
@@ -133,6 +149,8 @@
       "place": "Parc des Pins, Marseille",
       "target_audience": "Familles et adolescents",
       "movie_id": 9,
+      "year": 2024,
+      "screening_datetime": "2024-07-13T22:00:00",
       "accessibility": [
         "Entrées larges",
         "Accès dédié pour poussettes",
@@ -150,6 +168,8 @@
       "place": "Cour de la Médiathèque, Lille",
       "target_audience": "Cinéphiles",
       "movie_id": 10,
+      "year": 2024,
+      "screening_datetime": "2024-07-20T22:00:00",
       "accessibility": [
         "Rampe depuis le hall",
         "Ascenseur disponible",
@@ -167,6 +187,8 @@
       "place": "Plage Centrale, Biarritz",
       "target_audience": "Vacanciers et familles",
       "movie_id": 11,
+      "year": 2023,
+      "screening_datetime": "2023-07-15T22:15:00",
       "accessibility": [
         "Tapis d’accès plage jusqu’à la zone de projection",
         "Toilettes de plage accessibles",
@@ -183,6 +205,8 @@
       "place": "Jardin des Lumières, Nantes",
       "target_audience": "Amateurs de films d’horreur",
       "movie_id": 12,
+      "year": 2018,
+      "screening_datetime": "2022-07-23T23:00:00",
       "accessibility": [
         "Allées larges et stabilisées",
         "Assises variées accessibles",
@@ -199,6 +223,8 @@
       "place": "Friche Artistique, Lyon",
       "target_audience": "Étudiants et amateurs d’art urbain",
       "movie_id": 13,
+      "year": 2021,
+      "screening_datetime": "2021-07-17T22:00:00",
       "accessibility": [
         "Large rampe à l’entrée",
         "Cheminements balisés",
@@ -215,6 +241,8 @@
       "place": "Quai du Canal, Paris",
       "target_audience": "Cinéphiles locaux",
       "movie_id": 14,
+      "year": 2020,
+      "screening_datetime": "2020-07-18T22:10:00",
       "accessibility": [
         "Accès de plain-pied à la zone de visionnage",
         "Barrières le long de l’eau",
@@ -231,6 +259,8 @@
       "place": "Terrasse Haute, Eco-Cité Futur, Bordeaux",
       "target_audience": "Public curieux sensible à l’écologie",
       "movie_id": 15,
+      "year": 2019,
+      "screening_datetime": "2019-07-20T19:40:00",
       "accessibility": [
         "Ascenseur et rampe d’accès",
         "Emplacements pour fauteuils roulants près de l’écran",
@@ -239,7 +269,7 @@
       "practical_info": [
         "Assises variées (chaises, bancs, coussins)",
         "Bar avec boissons locales",
-        "Signalétique éco‑responsable et points de tri"
+        "Signalétique éco-responsable et points de tri"
       ]
     }
   ]
