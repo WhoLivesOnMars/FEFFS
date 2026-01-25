@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,9 +14,12 @@ import {
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import moviesData from "../../../assets/movies.json";
 import eventsData from "../../../assets/grindhouse-events.json";
+
+const STORAGE_KEY = "@festival_planning";
 
 type Movie = {
   id: number;
@@ -36,7 +39,7 @@ type Movie = {
   genre?: string;
   genres?: string[];
 
-  version?: string; // ex: "VO - STF"
+  version?: string;
 };
 
 type GrindhouseEvent = {
@@ -54,8 +57,6 @@ type GrindhouseEvent = {
   movie_ids: [number, number];
 
   background_image_url?: string;
-
-  // ✅ bande annonce de l'event (UNE seule)
   youtube_url?: string;
 
   ticketing_url?: string;
@@ -124,9 +125,6 @@ function joinGenres(movie: Movie) {
   return undefined;
 }
 
-/**
- * ✅ "pill" tags like your mock (rounded light chips)
- */
 function Pill({ text }: { text: string }) {
   return (
     <View style={tw`mr-2 mb-2 px-3 py-1 rounded-full bg-slate-100`}>
@@ -145,7 +143,6 @@ function MovieCarouselPage({ movie }: { movie: Movie }) {
 
   return (
     <View style={tw`w-full`}>
-      {/* Big still */}
       <View style={tw`px-4`}>
         <View style={tw`w-full h-56 rounded-2xl overflow-hidden bg-slate-800`}>
           {movie.image_url || movie.poster_url ? (
@@ -158,24 +155,20 @@ function MovieCarouselPage({ movie }: { movie: Movie }) {
         </View>
       </View>
 
-      {/* Title */}
       <Text style={tw`mt-4 px-4 text-slate-200 font-extrabold tracking-wider`}>
         {(movie.name ?? "FILM").toUpperCase()}
       </Text>
 
-      {/* Synopsis */}
       {synopsis ? (
         <Text style={tw`mt-2 px-4 text-slate-300 leading-5`}>
           {synopsis}
         </Text>
       ) : null}
 
-      {/* FICHE TECHNIQUE */}
       <Text style={tw`mt-5 px-4 text-slate-200 font-extrabold tracking-wider text-xs`}>
         FICHE TECHNIQUE
       </Text>
 
-      {/* ✅ Pills, exactly like mock */}
       <View style={tw`mt-3 px-4 flex-row flex-wrap`}>
         {movie.year ? <Pill text={`${movie.year}`} /> : null}
         {duration ? <Pill text={duration} /> : null}
@@ -194,15 +187,11 @@ function MovieCarouselPage({ movie }: { movie: Movie }) {
         {movie.version ? <Pill text={`Version : ${movie.version}`} /> : null}
       </View>
 
-      {/* Bottom spacing so the dots don't stick */}
       <View style={tw`h-6`} />
     </View>
   );
 }
 
-/**
- * ✅ One SINGLE event trailer under the carousel (not inside each page)
- */
 function EventTrailer({ youtubeUrl }: { youtubeUrl?: string }) {
   if (!youtubeUrl) return null;
 
@@ -216,7 +205,6 @@ function EventTrailer({ youtubeUrl }: { youtubeUrl?: string }) {
           }`
         }
       >
-        {/* Simple overlay play */}
         <View style={tw`w-14 h-14 rounded-full bg-black/40 items-center justify-center`}>
           <Ionicons name="play" size={28} color="#fff" />
         </View>
@@ -233,6 +221,7 @@ function EventTrailer({ youtubeUrl }: { youtubeUrl?: string }) {
 
 export default function GrindhouseReadOneScreen() {
   const { eventId } = useLocalSearchParams<{ eventId: string }>();
+  const [addedToPlanning, setAddedToPlanning] = useState(false);
 
   const moviesById = useMemo(() => {
     const list = (moviesData as any).movies ?? [];
@@ -258,6 +247,47 @@ export default function GrindhouseReadOneScreen() {
 
   const { width } = Dimensions.get("window");
 
+  // Vérifier si l'événement est dans le planning
+  useEffect(() => {
+    checkIfInPlanning();
+  }, [eventId]);
+
+  const checkIfInPlanning = async () => {
+    try {
+      const stored = await AsyncStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const planning = new Set(JSON.parse(stored));
+        const eventKey = `grindhouse:${eventId}`;
+        setAddedToPlanning(planning.has(eventKey));
+      }
+    } catch (error) {
+      console.error("Erreur lecture planning:", error);
+    }
+  };
+
+  const togglePlanning = async () => {
+    try {
+      const eventKey = `grindhouse:${eventId}`;
+      const stored = await AsyncStorage.getItem(STORAGE_KEY);
+      const planning = stored ? new Set(JSON.parse(stored)) : new Set<string>();
+
+      if (planning.has(eventKey)) {
+        planning.delete(eventKey);
+        setAddedToPlanning(false);
+      } else {
+        planning.add(eventKey);
+        setAddedToPlanning(true);
+      }
+
+      await AsyncStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(Array.from(planning))
+      );
+    } catch (error) {
+      console.error("Erreur sauvegarde planning:", error);
+    }
+  };
+
   const onScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const x = e.nativeEvent.contentOffset.x;
     const idx = Math.round(x / width);
@@ -273,7 +303,7 @@ export default function GrindhouseReadOneScreen() {
         </Pressable>
 
         <Text style={tw`mt-6 text-slate-900 font-bold text-lg`}>Évènement introuvable</Text>
-        <Text style={tw`mt-2 text-slate-600`}>Impossible de trouver l’évènement #{String(eventId)}.</Text>
+        <Text style={tw`mt-2 text-slate-600`}>Impossible de trouver l'évènement #{String(eventId)}.</Text>
       </View>
     );
   }
@@ -281,6 +311,9 @@ export default function GrindhouseReadOneScreen() {
   const badgeLabel = formatEventBadge(event.start_at);
   const title = event.title ?? event.name ?? "Soirée cinéma";
   const priceLabel = `${event.price} ${event.currency ?? "€"}`;
+  
+  // Vérifier si l'événement est futur
+  const isFutureEvent = new Date(event.start_at).getTime() > Date.now();
 
   return (
     <ScrollView style={tw`flex-1 bg-white`} showsVerticalScrollIndicator={false}>
@@ -341,24 +374,52 @@ export default function GrindhouseReadOneScreen() {
         </View>
       </View>
 
-      {/* Billetterie button */}
-      <View style={tw`mt-4 px-4`}>
-        <Pressable
-          onPress={() => {
-            if (event.ticketing_url) Linking.openURL(event.ticketing_url);
-          }}
-          style={({ pressed }) =>
-            tw`w-full h-12 rounded-xl items-center justify-center flex-row ${
-              pressed ? "bg-orange-700" : "bg-orange-600"
-            }`
-          }
-        >
-          <Ionicons name="ticket-outline" size={18} color="#fff" />
-          <Text style={tw`ml-2 text-white font-bold`}>Billetterie</Text>
-        </Pressable>
-      </View>
+      {/* Boutons - seulement si événement futur */}
+      {isFutureEvent && (
+        <View style={tw`mt-4 px-4`}>
+          {/* Billetterie */}
+          <Pressable
+            onPress={() => {
+              if (event.ticketing_url) Linking.openURL(event.ticketing_url);
+            }}
+            style={({ pressed }) =>
+              tw`w-full py-3.5 rounded-xl items-center justify-center flex-row ${
+                pressed ? "bg-orange-700" : "bg-orange-600"
+              }`
+            }
+          >
+            <Ionicons name="ticket-outline" size={20} color="#fff" />
+            <Text style={tw`ml-2 text-white font-bold text-base`}>Billetterie</Text>
+          </Pressable>
 
-      {/* ✅ Dark section: Carousel + dots + ONE event trailer under it */}
+          {/* Planning */}
+          <Pressable
+            onPress={togglePlanning}
+            style={({ pressed }) =>
+              tw`w-full mt-3 py-3.5 rounded-xl flex-row items-center justify-center ${
+                addedToPlanning
+                  ? pressed
+                    ? "bg-slate-700"
+                    : "bg-slate-800"
+                  : pressed
+                  ? "bg-slate-600"
+                  : "bg-slate-700"
+              }`
+            }
+          >
+            <Ionicons
+              name={addedToPlanning ? "checkmark-circle" : "add-circle"}
+              size={22}
+              color="white"
+            />
+            <Text style={tw`ml-2 text-white font-bold text-base`}>
+              {addedToPlanning ? "Dans mon planning" : "Ajouter au planning"}
+            </Text>
+          </Pressable>
+        </View>
+      )}
+
+      {/* Dark section: Carousel + dots + trailer */}
       <View style={tw`mt-6 bg-slate-950`}>
         {/* Carousel */}
         <FlatList
@@ -398,7 +459,6 @@ export default function GrindhouseReadOneScreen() {
           </View>
         </View>
 
-        {/* ✅ ONE event trailer UNDER the carousel (not per movie) */}
         <EventTrailer youtubeUrl={event.youtube_url} />
       </View>
     </ScrollView>

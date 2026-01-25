@@ -139,6 +139,9 @@ export function SummerNightReadOneScreen() {
   const genres = movie?.genres?.length ? movie.genres.join(", ") : "—";
   const versions = movie?.versions?.length ? movie.versions.join(" · ") : "—";
 
+  // Vérifier si l'événement est futur
+  const isFutureEvent = new Date(event.screening_datetime).getTime() > Date.now();
+
   return (
     <View style={tw`flex-1 bg-white`}>
       {/* HEADER */}
@@ -210,31 +213,33 @@ export function SummerNightReadOneScreen() {
           </View>
 
           {/* Button - Nouveau style */}
-          <View style={tw`mt-6`}>
-            <Pressable
-              onPress={togglePlanning}
-              style={({ pressed }) =>
-                tw`w-full py-3.5 rounded-xl flex-row items-center justify-center ${
-                  addedToPlanning
-                    ? pressed
-                      ? "bg-slate-700"
-                      : "bg-slate-800"
-                    : pressed
-                    ? "bg-orange-600"
-                    : "bg-orange-500"
-                }`
-              }
-            >
-              <Ionicons
-                name={addedToPlanning ? "checkmark-circle" : "add-circle"}
-                size={22}
-                color="white"
-              />
-              <Text style={tw`ml-2 text-white font-bold text-base`}>
-                {addedToPlanning ? "Dans mon planning" : "Ajouter au planning"}
-              </Text>
-            </Pressable>
-          </View>
+          {isFutureEvent && (
+            <View style={tw`mt-6`}>
+              <Pressable
+                onPress={togglePlanning}
+                style={({ pressed }) =>
+                  tw`w-full py-3.5 rounded-xl flex-row items-center justify-center ${
+                    addedToPlanning
+                      ? pressed
+                        ? "bg-slate-700"
+                        : "bg-slate-800"
+                      : pressed
+                      ? "bg-orange-600"
+                      : "bg-orange-500"
+                  }`
+                }
+              >
+                <Ionicons
+                  name={addedToPlanning ? "checkmark-circle" : "add-circle"}
+                  size={22}
+                  color="white"
+                />
+                <Text style={tw`ml-2 text-white font-bold text-base`}>
+                  {addedToPlanning ? "Dans mon planning" : "Ajouter au planning"}
+                </Text>
+              </Pressable>
+            </View>
+          )}
         </View>
 
         {/* SYNOPSIS */}
