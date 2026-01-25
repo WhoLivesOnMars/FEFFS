@@ -53,7 +53,7 @@ export default function LoginScreen({ onLoggedIn, onGoToRegister, onForgotPasswo
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <ScrollView
-                    style={tw`flex-1 bg-white`}
+                    style={tw`flex-1`}
                     contentContainerStyle={tw`flex-grow px-6 pt-10 pb-10`}
                     keyboardShouldPersistTaps="handled"
                 >

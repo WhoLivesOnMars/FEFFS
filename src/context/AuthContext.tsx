@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { getCurrentUser, loginUser, logoutUser, registerUser, StoredUser } from "../services/authService";
+import { getCurrentUser, loginUser, logoutUser, registerUser, StoredUser, updateUserEmail } from "../services/authService";
 
 type AuthContextType = {
     user: { email: string } | null;
@@ -7,6 +7,7 @@ type AuthContextType = {
     register: (email: string, password: string) => Promise<void>;
     login: (email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
+    updateEmail: (newEmail: string) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -38,8 +39,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(null);
     };
 
+    const updateEmail = async (newEmail: string) => {
+        if (!user?.email) return;
+        const updated = await updateUserEmail(user.email, newEmail);
+        setUser({ email: updated.email });
+    };
+
     return (
-        <AuthContext.Provider value={{ user, loading, register, login, logout }}>
+        <AuthContext.Provider value={{ user, loading, register, login, logout, updateEmail }}>
             {children}
         </AuthContext.Provider>
     );
