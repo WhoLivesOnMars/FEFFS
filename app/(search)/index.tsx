@@ -1,5 +1,6 @@
-import {SearchScreen} from "@/src/features/search/SearchScreen";
+import React from "react";
+import SearchScreen from "@/src/features/search/SearchScreen";
 
-export default function Index() {
+export default function SearchIndex() {
   return <SearchScreen />;
 }
