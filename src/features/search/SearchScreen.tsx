@@ -7,6 +7,7 @@ import { router, useNavigation } from "expo-router";
 import moviesData from "../../../assets/movies.json";
 import summerNightData from "../../../assets/summer-night-events.json";
 import grindhouseData from "../../../assets/grindhouse-events.json";
+import { useTheme } from "@/src/context/ThemeContext";
 
 type Movie = {
     id: number;
@@ -77,6 +78,10 @@ const SearchScreen: React.FC = () => {
     const [category, setCategory] = useState<SearchCategory>("all");
 
     const navigation = useNavigation();
+    const { theme } = useTheme();
+    const isDark = theme === "dark";
+
+    const placeholderColor = isDark ? "#6b7280" : "#9ca3af";
 
     const handleBack = () => {
         if (navigation.canGoBack && navigation.canGoBack()) {
@@ -206,11 +211,10 @@ const SearchScreen: React.FC = () => {
     const renderItem = ({ item }: { item: SearchItem }) => (
         <Pressable
             onPress={() => handlePressItem(item)}
-            style={({ pressed }) =>
-                tw`flex-row items-center justify-between px-4 py-3 ${
-                    pressed ? "opacity-90" : "opacity-100"
-                }`
-            }
+            style={({ pressed }) => [
+                tw`flex-row items-center justify-between px-4 py-3`,
+                { opacity: pressed ? 0.9 : 1 },
+            ]}
         >
             <View style={tw`flex-row items-center flex-1`}>
                 <View
@@ -233,7 +237,10 @@ const SearchScreen: React.FC = () => {
                             color="#f97316"
                         />
                         <Text
-                            style={tw`ml-1 text-sm font-semibold text-slate-900`}
+                            style={[
+                                tw`ml-1 text-sm font-semibold`,
+                                { color: isDark ? "#e5e7eb" : "#0f172a" },
+                            ]}
                             numberOfLines={2}
                         >
                             {item.place}
@@ -241,7 +248,10 @@ const SearchScreen: React.FC = () => {
                     </View>
 
                     <Text
-                        style={tw`mt-1 text-xs text-slate-500`}
+                        style={[
+                            tw`mt-1 text-xs`,
+                            { color: isDark ? "#9ca3af" : "#6b7280" },
+                        ]}
                         numberOfLines={1}
                     >
                         {item.title}
@@ -253,7 +263,12 @@ const SearchScreen: React.FC = () => {
                 <Text style={tw`text-xs font-semibold text-orange-600`}>
                     {item.dateDayLabel}
                 </Text>
-                <Text style={tw`mt-1 text-xs text-slate-600`}>
+                <Text
+                    style={[
+                        tw`mt-1 text-xs`,
+                        { color: isDark ? "#d1d5db" : "#4b5563" },
+                    ]}
+                >
                     à {item.timeLabel}
                 </Text>
             </View>
@@ -261,32 +276,59 @@ const SearchScreen: React.FC = () => {
     );
 
     return (
-        <View style={tw`flex-1 bg-[#fafafa]`}>
+        <View
+            style={[
+                tw`flex-1`,
+                { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
+            ]}
+        >
             <View style={tw`px-4 pt-6 pb-3 flex-row items-center`}>
                 <Pressable
                     onPress={handleBack}
                     style={tw`w-10 h-10 rounded-full items-center justify-center mr-2`}
                     hitSlop={10}
                 >
-                    <Ionicons name="chevron-back" size={22} color="#0f172a" />
+                    <Ionicons
+                        name="chevron-back"
+                        size={22}
+                        color={isDark ? "#e5e7eb" : "#0f172a"}
+                    />
                 </Pressable>
 
-                <Text style={tw`text-lg font-semibold text-slate-900`}>
+                <Text
+                    style={[
+                        tw`text-lg font-semibold`,
+                        { color: isDark ? "#e5e7eb" : "#0f172a" },
+                    ]}
+                >
                     Recherche
                 </Text>
             </View>
 
             <View style={tw`px-4`}>
                 <View
-                    style={tw`flex-row items-center bg-white rounded-2xl px-3 py-2 border border-slate-200`}
+                    style={[
+                        tw`flex-row items-center rounded-2xl px-3 py-2 border`,
+                        {
+                            backgroundColor: isDark ? "#020617" : "#ffffff",
+                            borderColor: isDark ? "#1f2937" : "#e5e7eb",
+                        },
+                    ]}
                 >
-                    <Ionicons name="search-outline" size={18} color="#9ca3af" />
+                    <Ionicons
+                        name="search-outline"
+                        size={18}
+                        color={placeholderColor}
+                    />
                     <TextInput
                         value={query}
                         onChangeText={setQuery}
                         placeholder="Rechercher un lieu, un nom, une date…"
-                        placeholderTextColor="#9ca3af"
-                        style={tw`ml-2 flex-1 text-sm text-slate-900`}
+                        placeholderTextColor={placeholderColor}
+                        style={[
+                            tw`ml-2 flex-1 text-sm`,
+                            { color: isDark ? "#e5e7eb" : "#0f172a" },
+                        ]}
                     />
                     {query.length > 0 && (
                         <Pressable onPress={() => setQuery("")} hitSlop={10}>
@@ -304,9 +346,19 @@ const SearchScreen: React.FC = () => {
                 <View style={tw`flex-row`}>
                     <Pressable
                         onPress={() => setCategory("all")}
-                        style={tw`flex-row items-center px-4 py-2 rounded-2xl mr-2 ${
-                            category === "all" ? "bg-orange-600" : "bg-white"
-                        }`}
+                        style={[
+                            tw`flex-row items-center px-4 py-2 rounded-2xl mr-2`,
+                            {
+                                backgroundColor:
+                                    category === "all"
+                                        ? "#f97316"
+                                        : isDark
+                                            ? "transparent"
+                                            : "#ffffff",
+                                borderWidth: category === "all" ? 0 : 1,
+                                borderColor: isDark ? "#4b5563" : "#e5e7eb",
+                            },
+                        ]}
                     >
                         <Ionicons
                             name="grid-outline"
@@ -314,11 +366,17 @@ const SearchScreen: React.FC = () => {
                             color={category === "all" ? "#fff" : "#f97316"}
                         />
                         <Text
-                            style={tw`ml-2 text-xs font-semibold ${
-                                category === "all"
-                                    ? "text-white"
-                                    : "text-slate-900"
-                            }`}
+                            style={[
+                                tw`ml-2 text-xs font-semibold`,
+                                {
+                                    color:
+                                        category === "all"
+                                            ? "#ffffff"
+                                            : isDark
+                                                ? "#e5e7eb"
+                                                : "#0f172a",
+                                },
+                            ]}
                         >
                             Tous
                         </Text>
@@ -326,11 +384,19 @@ const SearchScreen: React.FC = () => {
 
                     <Pressable
                         onPress={() => setCategory("projection")}
-                        style={tw`flex-row items-center px-4 py-2 rounded-2xl mr-2 ${
-                            category === "projection"
-                                ? "bg-orange-600"
-                                : "bg-white"
-                        }`}
+                        style={[
+                            tw`flex-row items-center px-4 py-2 rounded-2xl mr-2`,
+                            {
+                                backgroundColor:
+                                    category === "projection"
+                                        ? "#f97316"
+                                        : isDark
+                                            ? "transparent"
+                                            : "#ffffff",
+                                borderWidth: category === "projection" ? 0 : 1,
+                                borderColor: isDark ? "#4b5563" : "#e5e7eb",
+                            },
+                        ]}
                     >
                         <Ionicons
                             name="film-outline"
@@ -340,11 +406,17 @@ const SearchScreen: React.FC = () => {
                             }
                         />
                         <Text
-                            style={tw`ml-2 text-xs font-semibold ${
-                                category === "projection"
-                                    ? "text-white"
-                                    : "text-slate-900"
-                            }`}
+                            style={[
+                                tw`ml-2 text-xs font-semibold`,
+                                {
+                                    color:
+                                        category === "projection"
+                                            ? "#ffffff"
+                                            : isDark
+                                                ? "#e5e7eb"
+                                                : "#0f172a",
+                                },
+                            ]}
                         >
                             Projections
                         </Text>
@@ -352,9 +424,19 @@ const SearchScreen: React.FC = () => {
 
                     <Pressable
                         onPress={() => setCategory("event")}
-                        style={tw`flex-row items-center px-4 py-2 rounded-2xl ${
-                            category === "event" ? "bg-orange-600" : "bg-white"
-                        }`}
+                        style={[
+                            tw`flex-row items-center px-4 py-2 rounded-2xl`,
+                            {
+                                backgroundColor:
+                                    category === "event"
+                                        ? "#f97316"
+                                        : isDark
+                                            ? "transparent"
+                                            : "#ffffff",
+                                borderWidth: category === "event" ? 0 : 1,
+                                borderColor: isDark ? "#4b5563" : "#e5e7eb",
+                            },
+                        ]}
                     >
                         <Ionicons
                             name="sparkles-outline"
@@ -362,11 +444,17 @@ const SearchScreen: React.FC = () => {
                             color={category === "event" ? "#fff" : "#f97316"}
                         />
                         <Text
-                            style={tw`ml-2 text-xs font-semibold ${
-                                category === "event"
-                                    ? "text-white"
-                                    : "text-slate-900"
-                            }`}
+                            style={[
+                                tw`ml-2 text-xs font-semibold`,
+                                {
+                                    color:
+                                        category === "event"
+                                            ? "#ffffff"
+                                            : isDark
+                                                ? "#e5e7eb"
+                                                : "#0f172a",
+                                },
+                            ]}
                         >
                             Événements
                         </Text>
@@ -376,7 +464,10 @@ const SearchScreen: React.FC = () => {
 
             <View style={tw`mt-5 flex-1`}>
                 <Text
-                    style={tw`px-4 mb-2 text-xs font-semibold text-slate-500`}
+                    style={[
+                        tw`px-4 mb-2 text-xs font-semibold`,
+                        { color: isDark ? "#9ca3af" : "#6b7280" },
+                    ]}
                 >
                     RÉSULTATS DE RECHERCHE
                 </Text>
@@ -386,12 +477,22 @@ const SearchScreen: React.FC = () => {
                     keyExtractor={(item) => item.key}
                     renderItem={renderItem}
                     ItemSeparatorComponent={() => (
-                        <View style={tw`h-px bg-slate-100 mx-4`} />
+                        <View
+                            style={[
+                                tw`h-px mx-4`,
+                                { backgroundColor: isDark ? "#1f2937" : "#e5e7eb" },
+                            ]}
+                        />
                     )}
                     contentContainerStyle={tw`pb-6`}
                     ListEmptyComponent={
                         <View style={tw`px-4 mt-6`}>
-                            <Text style={tw`text-sm text-slate-500`}>
+                            <Text
+                                style={[
+                                    tw`text-sm`,
+                                    { color: isDark ? "#9ca3af" : "#6b7280" },
+                                ]}
+                            >
                                 Aucun résultat pour « {query} ».
                             </Text>
                         </View>

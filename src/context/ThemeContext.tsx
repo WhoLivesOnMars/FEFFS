@@ -1,37 +1,74 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "@/src/context/AuthContext";
 
 export type ThemeMode = "light" | "dark" | "system";
 
-type ThemeContextType = {
+export type ThemeContextType = {
     theme: ThemeMode;
     setTheme: (mode: ThemeMode) => Promise<void>;
 };
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+    undefined
+);
 
-const STORAGE_KEY = "APP_THEME_V2";
+const STORAGE_KEY_PREFIX = "APP_THEME_V2";
 
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [theme, setThemeState] = useState<ThemeMode>("system");
+function buildStorageKey(email?: string | null): string | null {
+    if (!email) return null;
+    return `${STORAGE_KEY_PREFIX}_${email}`;
+}
+
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+                                                                           children,
+                                                                       }) => {
+    const { user } = useAuth(); // кто сейчас залогинен
+    const [theme, setThemeState] = useState<ThemeMode>("light");
 
     useEffect(() => {
-        (async () => {
+        const loadTheme = async () => {
+            if (!user || !user.email) {
+                setThemeState("light");
+                return;
+            }
+
             try {
-                const stored = await AsyncStorage.getItem(STORAGE_KEY);
-                if (stored === "light" || stored === "dark" || stored === "system") {
+                const key = buildStorageKey(user.email);
+                if (!key) {
+                    setThemeState("light");
+                    return;
+                }
+
+                const stored = await AsyncStorage.getItem(key);
+                if (
+                    stored === "light" ||
+                    stored === "dark" ||
+                    stored === "system"
+                ) {
                     setThemeState(stored);
+                } else {
+                    setThemeState("light");
                 }
             } catch (e) {
                 console.log("Error loading theme", e);
+                setThemeState("light");
             }
-        })();
-    }, []);
+        };
+
+        loadTheme();
+    }, [user]);
 
     const setTheme = async (mode: ThemeMode) => {
+        setThemeState(mode);
+
         try {
-            setThemeState(mode);
-            await AsyncStorage.setItem(STORAGE_KEY, mode);
+            if (user?.email) {
+                const key = buildStorageKey(user.email);
+                if (key) {
+                    await AsyncStorage.setItem(key, mode);
+                }
+            }
         } catch (e) {
             console.log("Error saving theme", e);
         }

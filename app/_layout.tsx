@@ -29,10 +29,10 @@ function RootLayoutInner() {
 
 export default function RootLayout() {
     return (
-        <ThemeProvider>
-            <AuthProvider>
+        <AuthProvider>
+            <ThemeProvider>
                 <RootLayoutInner />
-            </AuthProvider>
-        </ThemeProvider>
+            </ThemeProvider>
+        </AuthProvider>
     );
 }
