@@ -8,9 +8,14 @@ import { router } from "expo-router";
 import { useAuth } from "@/src/context/AuthContext";
 import { getUserProfile, UserProfile } from "@/src/services/profileService";
 
+import { useTheme } from "@/src/context/ThemeContext";
+
 export default function ProfileScreen() {
     const { user, logout } = useAuth();
     const [profile, setProfile] = useState<UserProfile | null>(null);
+
+    const { theme } = useTheme();
+    const isDark = theme === "dark";
 
     const email = user?.email ?? "";
 
@@ -49,7 +54,12 @@ export default function ProfileScreen() {
             : "Nom non renseigné";
 
     return (
-        <View style={tw`flex-1 pt-10 px-6`}>
+        <View
+            style={[
+                tw`flex-1 px-6 pt-10`,
+                { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
+            ]}
+        >
             <View style={tw`items-center mb-8`}>
                 <View
                     style={tw`w-28 h-28 rounded-full bg-orange-200 items-center justify-center mb-4`}
@@ -64,7 +74,12 @@ export default function ProfileScreen() {
                     )}
                 </View>
 
-                <Text style={tw`text-lg font-semibold text-slate-900 mb-1`}>
+                <Text
+                    style={[
+                          tw`text-lg font-semibold mb-1`,
+                          { color: isDark ? "#e5e7eb" : "#111827" },
+                    ]}
+                >
                     {fullName}
                 </Text>
                 <Text style={tw`text-sm text-gray-500`}>{email}</Text>
