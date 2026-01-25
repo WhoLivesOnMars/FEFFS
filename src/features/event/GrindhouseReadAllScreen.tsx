@@ -9,6 +9,8 @@ import eventsData from "../../../assets/grindhouse-events.json"; // ✅ adapte l
 import { ProgrammeItem } from "@/src/components/event/ProgrammeItem";
 import { YearChips } from "@/src/components/event/YearChips";
 import { EventListHeader } from "@/src/components/event/EventListHeader";
+import { BottomNavBar } from "@/src/components/navigation/BottomNavBar";
+
 
 type Movie = {
   id: number;
@@ -208,6 +210,7 @@ export class GrindhouseReadAllScreen extends Component<{}, { selectedYear: numbe
           }
           ListEmptyComponent={null}
         />
+        <BottomNavBar />
       </View>
     );
   }

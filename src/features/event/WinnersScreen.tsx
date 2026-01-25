@@ -6,6 +6,7 @@ import { router } from "expo-router";
 
 import { EventListHeader } from "@/src/components/event/EventListHeader";
 import { YearChips } from "@/src/components/event/YearChips";
+import { BottomNavBar } from "@/src/components/navigation/BottomNavBar";
 
 type Award = {
   id: number;
@@ -258,6 +259,7 @@ export class WinnersScreen extends Component<{}, State> {
             </View>
           </View>
         </ScrollView>
+        <BottomNavBar />
       </View>
     );
   }
