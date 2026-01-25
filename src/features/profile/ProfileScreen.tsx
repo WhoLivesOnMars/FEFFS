@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { View, Text, Pressable, Image } from "react-native";
+import { View, Text, Pressable, Image, ActivityIndicator } from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
@@ -7,11 +7,10 @@ import { router } from "expo-router";
 
 import { useAuth } from "@/src/context/AuthContext";
 import { getUserProfile, UserProfile } from "@/src/services/profileService";
-
 import { useTheme } from "@/src/context/ThemeContext";
 
 export default function ProfileScreen() {
-    const { user, logout } = useAuth();
+    const { user, loading } = useAuth();
     const [profile, setProfile] = useState<UserProfile | null>(null);
 
     const { theme } = useTheme();
@@ -21,10 +20,11 @@ export default function ProfileScreen() {
 
     useFocusEffect(
         useCallback(() => {
+            if (!email) return;
+
             let isActive = true;
 
             const load = async () => {
-                if (!email) return;
                 const data = await getUserProfile(email);
                 if (isActive) {
                     setProfile(data ?? null);
@@ -39,14 +39,74 @@ export default function ProfileScreen() {
         }, [email])
     );
 
-    const handleLogout = async () => {
-        try {
-            await logout();
-            router.replace("/(auth)/login");
-        } catch (e) {
-            console.log("Erreur de déconnexion :", e);
-        }
-    };
+    if (loading) {
+        return (
+            <View
+                style={[
+                    tw`flex-1 items-center justify-center`,
+                    { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
+                ]}
+            >
+                <ActivityIndicator color="#f97316" />
+            </View>
+        );
+    }
+
+    if (!user) {
+        return (
+            <View
+                style={[
+                    tw`flex-1 px-6 pt-16`,
+                    { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
+                ]}
+            >
+                <View style={tw`items-center mb-10`}>
+                    <Ionicons
+                        name="person-circle-outline"
+                        size={72}
+                        color="#f97316"
+                    />
+                    <Text
+                        style={[
+                            tw`mt-4 text-lg font-semibold`,
+                            { color: isDark ? "#e5e7eb" : "#111827" },
+                        ]}
+                    >
+                        Bienvenue au festival
+                    </Text>
+                    <Text
+                        style={[
+                            tw`mt-2 text-center text-sm`,
+                            { color: isDark ? "#9ca3af" : "#6b7280" },
+                        ]}
+                    >
+                        Connectez-vous ou créez un compte pour gérer votre profil
+                        et votre planning.
+                    </Text>
+                </View>
+
+                <View style={tw`gap-3`}>
+                    <Pressable
+                        style={tw`h-14 rounded-2xl bg-orange-600 items-center justify-center`}
+                        onPress={() => router.push("/(auth)/login")}
+                    >
+                        <Text style={tw`text-white font-semibold text-base`}>
+                            Se connecter
+                        </Text>
+                    </Pressable>
+
+                    <Pressable
+                        style={tw`h-14 rounded-2xl border border-orange-600 items-center justify-center`}
+                        onPress={() => router.push("/(auth)/register")}
+                    >
+                        <Text style={tw`text-orange-600 font-semibold text-base`}>
+                            Créer un compte
+                        </Text>
+                    </Pressable>
+                </View>
+            </View>
+        );
+    }
 
     const fullName =
         profile?.fullName && profile.fullName.trim().length > 0
@@ -76,13 +136,20 @@ export default function ProfileScreen() {
 
                 <Text
                     style={[
-                          tw`text-lg font-semibold mb-1`,
-                          { color: isDark ? "#e5e7eb" : "#111827" },
+                        tw`text-lg font-semibold mb-1`,
+                        { color: isDark ? "#e5e7eb" : "#0f172a" },
                     ]}
                 >
                     {fullName}
                 </Text>
-                <Text style={tw`text-sm text-gray-500`}>{email}</Text>
+                <Text
+                    style={[
+                        tw`text-sm`,
+                        { color: isDark ? "#9ca3af" : "#6b7280" },
+                    ]}
+                >
+                    {email}
+                </Text>
             </View>
 
             <View style={tw`gap-3`}>
@@ -91,9 +158,7 @@ export default function ProfileScreen() {
                     onPress={() => router.push("/(profile)/edit")}
                 >
                     <View style={tw`flex-row items-center`}>
-                        <View
-                            style={tw`w-8 h-8 items-center justify-center mr-3`}
-                        >
+                        <View style={tw`w-8 h-8 items-center justify-center mr-3`}>
                             <Ionicons
                                 name="person-circle-outline"
                                 size={18}
@@ -112,9 +177,7 @@ export default function ProfileScreen() {
                     onPress={() => router.push("/(profile)/password")}
                 >
                     <View style={tw`flex-row items-center`}>
-                        <View
-                            style={tw`w-8 h-8 items-center justify-center mr-3`}
-                        >
+                        <View style={tw`w-8 h-8 items-center justify-center mr-3`}>
                             <Ionicons
                                 name="lock-closed-outline"
                                 size={18}
@@ -133,9 +196,7 @@ export default function ProfileScreen() {
                     onPress={() => router.push("/(profile)/settings")}
                 >
                     <View style={tw`flex-row items-center`}>
-                        <View
-                            style={tw`w-8 h-8 items-center justify-center mr-3`}
-                        >
+                        <View style={tw`w-8 h-8 items-center justify-center mr-3`}>
                             <Ionicons name="settings-outline" size={18} color="#f97316" />
                         </View>
                         <Text style={tw`text-sm text-slate-900 font-regular`}>
