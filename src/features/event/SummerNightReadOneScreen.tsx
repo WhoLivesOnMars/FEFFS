@@ -8,7 +8,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import moviesData from "../../../assets/movies.json";
 import eventsData from "../../../assets/summer-night-events.json";
 
-import { BottomNavBar } from "@/src/components/navigation/BottomNavBar";
 const STORAGE_KEY = "@festival_planning";
 
 type Movie = {
@@ -334,7 +333,6 @@ export function SummerNightReadOneScreen() {
           </View>
         </View>
       </ScrollView>
-      <BottomNavBar />
     </View>
   );
 }

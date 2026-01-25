@@ -6,8 +6,6 @@ import { EventsOfTheYearSection } from "@/src/features/home/sections/EventsOfThe
 import { NewsSection } from "@/src/features/home/sections/NewsSection";
 import { InformationSection } from "@/src/features/home/sections/InformationSection";
 
-import { BottomNavBar } from "@/src/components/navigation/BottomNavBar";
-
 export class HomeScreen extends Component {
   render() {
     return (
@@ -26,8 +24,6 @@ export class HomeScreen extends Component {
           <InformationSection />
         </ScrollView>
 
-
-        <BottomNavBar />
       </View>
     );
   }

@@ -19,8 +19,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import moviesData from "../../../assets/movies.json";
 import eventsData from "../../../assets/grindhouse-events.json";
 
-import { BottomNavBar } from "@/src/components/navigation/BottomNavBar";
-
 const STORAGE_KEY = "@festival_planning";
 
 type Movie = {
@@ -464,7 +462,6 @@ export default function GrindhouseReadOneScreen() {
         <EventTrailer youtubeUrl={event.youtube_url} />
          
       </View>
-      < BottomNavBar />
     </ScrollView>
     
   );
