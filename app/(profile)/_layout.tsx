@@ -5,23 +5,28 @@ import { Slot, usePathname, router } from "expo-router";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "@/src/context/AuthContext";
+import { useTheme } from "@/src/context/ThemeContext";
 
 export default function ProfileLayout() {
     const pathname = usePathname();
     const { logout } = useAuth();
+    const { theme } = useTheme();
+    const isDark = theme === "dark";
 
     const isEditProfile = pathname.includes("/edit");
     const isChangePassword = pathname.includes("/password");
     const isGeneralSettings = pathname.includes("/settings");
     const isTerms = pathname.includes("/terms");
     const isPrivacy = pathname.includes("/privacy");
+    const isTheme = pathname.includes("/theme");
 
     const showBack =
         isEditProfile ||
         isChangePassword ||
         isGeneralSettings ||
         isTerms ||
-        isPrivacy;
+        isPrivacy ||
+        isTheme;
 
     const showLogout = !showBack;
 
@@ -36,6 +41,8 @@ export default function ProfileLayout() {
         title = "Conditions d’utilisation";
     } else if (isPrivacy) {
         title = "Politique de confidentialité";
+    } else if (isTheme) {
+        title = "Thème";
     }
 
     const handleLogout = async () => {
@@ -48,20 +55,31 @@ export default function ProfileLayout() {
     };
 
     return (
-        <SafeAreaView style={tw`flex-1 bg-[#fafafa]`}>
+        <SafeAreaView
+            style={[
+                tw`flex-1`,
+                { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
+            ]}
+        >
             <View
                 style={[
-                    tw`flex-row items-center justify-between px-6 pt-3 pb-3 bg-white`,
+                    tw`flex-row items-center justify-between px-6 pt-3 pb-3`,
+                    { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
                 ]}
             >
                 <View style={tw`flex-row items-center`}>
                     {showBack && (
                         <Pressable onPress={() => router.back()} hitSlop={10}>
-                            <Ionicons name="chevron-back" size={22} color="#111827" />
+                            <Ionicons name="chevron-back" size={22} color={isDark ? "#e5e7eb" : "#111827"} />
                         </Pressable>
                     )}
 
-                    <Text style={tw`ml-2 text-xl font-semibold text-slate-900`}>
+                    <Text
+                        style={[
+                            tw`ml-2 text-xl font-semibold`,
+                            { color: isDark ? "#e5e7eb" : "#111827" },
+                        ]}
+                    >
                         {title}
                     </Text>
                 </View>

@@ -84,7 +84,7 @@ export default function EditPasswordScreen() {
                     keyboardShouldPersistTaps="handled"
                 >
                     <View style={tw`mt-6`}>
-                        <Text style={tw`mb-2 text-xs font-medium text-gray-700`}>
+                        <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
                             Ancien mot de passe
                         </Text>
                         <View
@@ -118,7 +118,7 @@ export default function EditPasswordScreen() {
                             </Pressable>
                         </View>
 
-                        <Text style={tw`mb-2 text-xs font-medium text-gray-700`}>
+                        <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
                             Nouveau mot de passe
                         </Text>
                         <View
@@ -153,7 +153,7 @@ export default function EditPasswordScreen() {
                             </Pressable>
                         </View>
 
-                        <Text style={tw`mb-2 text-xs font-medium text-gray-700`}>
+                        <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
                             Confirmer le nouveau mot de passe
                         </Text>
                         <View

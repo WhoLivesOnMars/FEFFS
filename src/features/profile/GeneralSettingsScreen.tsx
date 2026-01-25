@@ -3,9 +3,21 @@ import { View, Text, Pressable } from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { useTheme } from "@/src/context/ThemeContext";
 
 export default function GeneralSettingsScreen() {
-    const currentThemeLabel = "Par défaut";
+    const { theme } = useTheme();
+
+    const currentThemeLabel =
+        theme === "dark"
+            ? "Mode sombre"
+            : theme === "system"
+                ? "Par défaut"
+                : "Mode clair";
+
+    const goToTheme = () => {
+        router.push("/(profile)/theme");
+    };
 
     const goToTerms = () => {
         router.push("/(profile)/terms");
@@ -19,6 +31,7 @@ export default function GeneralSettingsScreen() {
         <View style={tw`flex-1 px-4 pt-6`}>
             <View>
                 <Pressable
+                    onPress={goToTheme}
                     style={tw`mb-3 flex-row items-center justify-between bg-white rounded-2xl px-4 py-4`}
                 >
                     <View>
