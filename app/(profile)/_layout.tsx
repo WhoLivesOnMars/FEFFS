@@ -9,7 +9,7 @@ import { useTheme } from "@/src/context/ThemeContext";
 
 export default function ProfileLayout() {
     const pathname = usePathname();
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
     const { theme } = useTheme();
     const isDark = theme === "dark";
 
@@ -20,6 +20,11 @@ export default function ProfileLayout() {
     const isPrivacy = pathname.includes("/privacy");
     const isTheme = pathname.includes("/theme");
 
+    const isProfileRoot =
+        pathname === "/(profile)" || pathname === "/(profile)/";
+
+    const isAuthenticated = !!user;
+
     const showBack =
         isEditProfile ||
         isChangePassword ||
@@ -28,7 +33,9 @@ export default function ProfileLayout() {
         isPrivacy ||
         isTheme;
 
-    const showLogout = !showBack;
+    const showLogout = isAuthenticated && !showBack;
+
+    const hideHeader = !isAuthenticated && isProfileRoot;
 
     let title = "Profil";
     if (isEditProfile) {
@@ -48,7 +55,7 @@ export default function ProfileLayout() {
     const handleLogout = async () => {
         try {
             await logout();
-            router.replace("/(auth)/login");
+            router.replace("/(profile)");
         } catch (e) {
             console.log("Erreur de déconnexion :", e);
         }
@@ -60,41 +67,48 @@ export default function ProfileLayout() {
                 tw`flex-1`,
                 { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
             ]}
+            edges={["left", "right", "bottom"]}
         >
-            <View
-                style={[
-                    tw`flex-row items-center justify-between px-6 pt-3 pb-3`,
-                    { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
-                ]}
-            >
-                <View style={tw`flex-row items-center`}>
-                    {showBack && (
-                        <Pressable onPress={() => router.back()} hitSlop={10}>
-                            <Ionicons name="chevron-back" size={22} color={isDark ? "#e5e7eb" : "#111827"} />
+            {!hideHeader && (
+                <View
+                    style={[
+                        tw`flex-row items-center justify-between px-6 pt-5 pb-3`,
+                        { backgroundColor: isDark ? "#0F172A" : "#fafafa" },
+                    ]}
+                >
+                    <View style={tw`flex-row items-center`}>
+                        {showBack && (
+                            <Pressable onPress={() => router.back()} hitSlop={10}>
+                                <Ionicons
+                                    name="chevron-back"
+                                    size={22}
+                                    color={isDark ? "#e5e7eb" : "#111827"}
+                                />
+                            </Pressable>
+                        )}
+
+                        <Text
+                            style={[
+                                tw`ml-2 text-xl font-semibold`,
+                                { color: isDark ? "#e5e7eb" : "#111827" },
+                            ]}
+                        >
+                            {title}
+                        </Text>
+                    </View>
+
+                    {showLogout && (
+                        <Pressable
+                            onPress={handleLogout}
+                            style={tw`px-3 py-2 rounded-xl bg-orange-100`}
+                        >
+                            <Text style={tw`text-orange-600 text-xs`}>
+                                Déconnexion
+                            </Text>
                         </Pressable>
                     )}
-
-                    <Text
-                        style={[
-                            tw`ml-2 text-xl font-semibold`,
-                            { color: isDark ? "#e5e7eb" : "#111827" },
-                        ]}
-                    >
-                        {title}
-                    </Text>
                 </View>
-
-                {showLogout && (
-                    <Pressable
-                        onPress={handleLogout}
-                        style={tw`px-3 py-2 rounded-xl bg-orange-100`}
-                    >
-                        <Text style={tw`text-orange-600 text-xs`}>
-                            Déconnexion
-                        </Text>
-                    </Pressable>
-                )}
-            </View>
+            )}
 
             <Slot />
         </SafeAreaView>
