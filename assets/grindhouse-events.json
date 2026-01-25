@@ -2,284 +2,101 @@
   "neighborhood_events": [
     {
       "id": 1,
-      "name": "Soirée Ciné de Quartier",
+      "title": "Cinéma de quartier",
+      "tag": "Évènement",
+      "start_at": "2018-07-06T21:30:00+02:00",
       "place": "Place Kléber, Strasbourg",
       "target_audience": "Familles du quartier",
-      "movie_id": 1,
+      "movie_ids": [1, 2],
       "price": 5,
-      "background_image_url": "https://exemple.com/backgrounds/place_kleber_soiree_cine.jpg",
-      "accessibility": [
-        "Projection en plein air accessible en fauteuil roulant depuis les rues adjacentes",
-        "Cheminements sans marche",
-        "Chaises accessibles"
-      ],
-      "practical_info": [
-        "Toilettes publiques à proximité",
-        "Petite buvette associative sur place",
-        "Arrivée possible en tram et à vélo"
-      ]
+      "currency": "EUR",
+      "background_image_url": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78",
+      "youtube_url": "https://www.youtube.com/watch?v=5a7qR-3Y1kU",
+      "ticketing_url": "https://exemple.com/billetterie/1"
     },
     {
       "id": 2,
-      "name": "Ciné-Musical au Parc",
+      "title": "Ciné-Musical au parc",
+      "tag": "Open Air",
+      "start_at": "2019-08-02T21:45:00+02:00",
       "place": "Parc de l’Orangerie, Strasbourg",
-      "target_audience": "Jeunes adultes du quartier",
-      "movie_id": 2,
+      "target_audience": "Jeunes adultes",
+      "movie_ids": [3, 4],
       "price": 6,
-      "background_image_url": "https://exemple.com/backgrounds/parc_orangerie_cine_musical.jpg",
-      "accessibility": [
-        "Chemins stabilisés",
-        "Entrées de plain-pied",
-        "Bancs proches de la zone de projection"
-      ],
-      "practical_info": [
-        "Stand de boissons sans alcool",
-        "Éclairage renforcé en fin de séance",
-        "Station de tram à quelques minutes à pied"
-      ]
+      "currency": "EUR",
+      "background_image_url": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc",
+      "youtube_url": "https://www.youtube.com/watch?v=ZnuwB35GYMY",
+      "ticketing_url": "https://exemple.com/billetterie/2"
     },
     {
       "id": 3,
-      "name": "Nuit du Thriller en Bas d’Immeuble",
-      "place": "Cour d’immeuble, quartier Neudorf, Strasbourg",
+      "title": "Nuit du thriller",
+      "tag": "Thriller",
+      "start_at": "2020-09-11T22:00:00+02:00",
+      "place": "Cour d’immeuble, Neudorf",
       "target_audience": "Amateurs de suspense",
-      "movie_id": 3,
-      "price": 5,
-      "background_image_url": "https://exemple.com/backgrounds/neudorf_cour_thriller.jpg",
-      "accessibility": [
-        "Accès par rampe depuis le trottoir",
-        "Portails maintenus ouverts pour les fauteuils roulants"
-      ],
-      "practical_info": [
-        "Chaises pliantes fournies",
-        "Point d’eau dans le hall",
-        "Sanitaires accessibles au rez-de-chaussée"
-      ]
+      "movie_ids": [5, 6],
+      "price": 4,
+      "currency": "EUR",
+      "background_image_url": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4",
+      "youtube_url": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+      "ticketing_url": "https://exemple.com/billetterie/3"
     },
     {
       "id": 4,
-      "name": "Cinéma au Bord du Rhin",
+      "title": "Cinéma au bord du Rhin",
+      "tag": "Open Air",
+      "start_at": "2021-07-23T21:30:00+02:00",
       "place": "Jardin des Deux Rives, Strasbourg",
       "target_audience": "Habitants du quartier",
-      "movie_id": 4,
+      "movie_ids": [7, 8],
       "price": 4,
-      "background_image_url": "https://exemple.com/backgrounds/jardin_deux_rives_cinema.jpg",
-      "accessibility": [
-        "Zone de projection plane près des allées principales",
-        "Cheminements sans marche",
-        "Emplacements réservés aux personnes à mobilité réduite"
-      ],
-      "practical_info": [
-        "Food-truck local sur place",
-        "Éclairage de sécurité le long des allées",
-        "Recommandation de venir avec une couverture"
-      ]
+      "currency": "EUR",
+      "background_image_url": "https://images.unsplash.com/photo-1497032205916-ac775f0649ae",
+      "youtube_url": "https://www.youtube.com/watch?v=8ugaeA-nMTc",
+      "ticketing_url": "https://exemple.com/billetterie/4"
     },
     {
       "id": 5,
-      "name": "Soirée Jeux & Ciné de Quartier",
-      "place": "Parvis de la Médiathèque André Malraux, Strasbourg",
-      "target_audience": "Ados et jeunes adultes",
-      "movie_id": 5,
+      "title": "Soirée jeux & ciné",
+      "tag": "Évènement",
+      "start_at": "2022-08-05T21:00:00+02:00",
+      "place": "Médiathèque André Malraux",
+      "target_audience": "Ados & jeunes adultes",
+      "movie_ids": [9, 10],
       "price": 5,
-      "background_image_url": "https://exemple.com/backgrounds/malraux_jeux_cine.jpg",
-      "accessibility": [
-        "Accès de plain-pied depuis l’arrêt de tram Winston Churchill",
-        "Large espace dégagé sans obstacles"
-      ],
-      "practical_info": [
-        "Tables hautes à disposition",
-        "Prises de courant disponibles",
-        "Sanitaires de la médiathèque accessibles pendant l’évènement"
-      ]
+      "currency": "EUR",
+      "background_image_url": "https://images.unsplash.com/photo-1517602302552-471fe67acf66",
+      "youtube_url": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+      "ticketing_url": "https://exemple.com/billetterie/5"
     },
     {
       "id": 6,
-      "name": "Ciné-Gourmand de la Krutenau",
+      "title": "Ciné-gourmand de la Krutenau",
+      "tag": "Gastronomie",
+      "start_at": "2023-07-14T21:15:00+02:00",
       "place": "Place d’Austerlitz, Strasbourg",
-      "target_audience": "Habitants et commerçants du quartier",
-      "movie_id": 6,
+      "target_audience": "Habitants & commerçants",
+      "movie_ids": [11, 12],
       "price": 8,
-      "background_image_url": "https://exemple.com/backgrounds/krutenau_cine_gourmand.jpg",
-      "accessibility": [
-        "Place pavée avec zones planes",
-        "Accès sans marche depuis les rues voisines"
-      ],
-      "practical_info": [
-        "Stands de restauration locale",
-        "Chaises et tables à disposition",
-        "Sanitaires accessibles dans un équipement public proche"
-      ]
+      "currency": "EUR",
+      "background_image_url": "https://images.unsplash.com/photo-1497032205916-ac775f0649ae",
+      "youtube_url": "https://www.youtube.com/watch?v=6ZfuNTqbHE8",
+      "ticketing_url": "https://exemple.com/billetterie/6"
     },
     {
       "id": 7,
-      "name": "Magie & Film au Parc",
-      "place": "Parc de la Citadelle, Strasbourg",
-      "target_audience": "Jeunes adultes du quartier",
-      "movie_id": 7,
+      "title": "Magie & Film au parc",
+      "tag": "Fantastique",
+      "start_at": "2024-08-16T21:30:00+02:00",
+      "place": "Parc de la Citadelle",
+      "target_audience": "Jeunes adultes",
+      "movie_ids": [13, 14],
       "price": 6,
-      "background_image_url": "https://exemple.com/backgrounds/parc_citadelle_magie_film.jpg",
-      "accessibility": [
-        "Entrées du parc accessibles aux fauteuils roulants",
-        "Allées larges et éclairées",
-        "Scène équipée d’une rampe"
-      ],
-      "practical_info": [
-        "Buvette de quartier tenue par une association",
-        "Bénévoles pour orienter le public",
-        "Prévoir un vêtement chaud pour la fin de soirée"
-      ]
-    },
-    {
-      "id": 8,
-      "name": "Soirée Sci-Fi du Neuhof",
-      "place": "Esplanade de quartier, Neuhof, Strasbourg",
-      "target_audience": "Fans de science-fiction",
-      "movie_id": 8,
-      "price": 5,
-      "background_image_url": "https://exemple.com/backgrounds/neuhof_scifi.jpg",
-      "accessibility": [
-        "Esplanade de plain-pied",
-        "Revêtement antidérapant",
-        "Accès direct depuis le trottoir"
-      ],
-      "practical_info": [
-        "Chaises pliantes fournies",
-        "Prêt de couvertures",
-        "Sanitaires du centre socio-culturel voisin accessibles"
-      ]
-    },
-    {
-      "id": 9,
-      "name": "Ciné des Héros du Quotidien",
-      "place": "Place du Marché, quartier de la Meinau, Strasbourg",
-      "target_audience": "Familles du quartier",
-      "movie_id": 9,
-      "price": 4,
-      "background_image_url": "https://exemple.com/backgrounds/meinau_cine_heros.jpg",
-      "accessibility": [
-        "Place de marché de plain-pied",
-        "Accès facilité pour poussettes",
-        "Accès facilité pour fauteuils roulants"
-      ],
-      "practical_info": [
-        "Buvette associative sur place",
-        "Point d’eau potable",
-        "Secouristes bénévoles présents pendant la séance"
-      ]
-    },
-    {
-      "id": 10,
-      "name": "Nuit des Archives au Centre-Ville",
-      "place": "Cour intérieure, quartier Grande Île, Strasbourg",
-      "target_audience": "Cinéphiles du quartier",
-      "movie_id": 10,
-      "price": 6,
-      "background_image_url": "https://exemple.com/backgrounds/grande_ile_archives.jpg",
-      "accessibility": [
-        "Accès par rampe depuis la rue",
-        "Porche suffisamment large pour les fauteuils roulants"
-      ],
-      "practical_info": [
-        "Chaises et bancs disponibles",
-        "Sanitaires accessibles au rez-de-chaussée",
-        "Éclairage discret durant la projection"
-      ]
-    },
-    {
-      "id": 11,
-      "name": "Ciné-Soirée du Port du Rhin",
-      "place": "Esplanade du Port du Rhin, Strasbourg",
-      "target_audience": "Habitants du front de Rhin",
-      "movie_id": 11,
-      "price": 7,
-      "background_image_url": "https://exemple.com/backgrounds/port_du_rhin_cine.jpg",
-      "accessibility": [
-        "Accès sans marche depuis l’arrêt de tram Port du Rhin",
-        "Grande esplanade plane",
-        "Zone réservée aux personnes à mobilité réduite"
-      ],
-      "practical_info": [
-        "Toilettes publiques accessibles",
-        "Signalétique de sécurité sur le site",
-        "Arceaux vélo à proximité"
-      ]
-    },
-    {
-      "id": 12,
-      "name": "Frissons au Parc du Heyritz",
-      "place": "Parc du Heyritz, Strasbourg",
-      "target_audience": "Jeunes adultes du quartier",
-      "movie_id": 12,
-      "price": 5,
-      "background_image_url": "https://exemple.com/backgrounds/heyritz_frissons.jpg",
-      "accessibility": [
-        "Allées stabilisées",
-        "Accès de plain-pied depuis le boulevard de Lyon"
-      ],
-      "practical_info": [
-        "Chaises à disposition",
-        "Petite buvette sur place",
-        "Sanitaires publics à l’entrée du parc",
-        "Recommandation d’apporter une couverture"
-      ]
-    },
-    {
-      "id": 13,
-      "name": "Ciné Fresques Urbaines à Cronenbourg",
-      "place": "Placette de quartier, Cronenbourg, Strasbourg",
-      "target_audience": "Étudiants et jeunes actifs",
-      "movie_id": 13,
-      "price": 4,
-      "background_image_url": "https://exemple.com/backgrounds/cronenbourg_fresques.jpg",
-      "accessibility": [
-        "Rampe large depuis le trottoir",
-        "Sol nivelé sur toute la placette"
-      ],
-      "practical_info": [
-        "Assises improvisées (palettes, bancs)",
-        "Toilettes du centre culturel voisin accessibles",
-        "Parking vélo sécurisé sur place"
-      ]
-    },
-    {
-      "id": 14,
-      "name": "Polar sur la Place Broglie",
-      "place": "Place Broglie, Strasbourg",
-      "target_audience": "Cinéphiles du centre-ville",
-      "movie_id": 14,
-      "price": 6,
-      "background_image_url": "https://exemple.com/backgrounds/place_broglie_polar.jpg",
-      "accessibility": [
-        "Place plate accessible depuis plusieurs rues",
-        "Accès sans marche",
-        "Zones de circulation dégagées"
-      ],
-      "practical_info": [
-        "Chaises pliantes fournies",
-        "Toilettes publiques à proximité",
-        "Présence d’agents de médiation",
-        "Contrôle du niveau sonore pour respecter le voisinage"
-      ]
-    },
-    {
-      "id": 15,
-      "name": "Soirée Jardins Partagés à l’Esplanade",
-      "place": "Jardins partagés de l’Esplanade, Strasbourg",
-      "target_audience": "Voisins et jardiniers du quartier",
-      "movie_id": 15,
-      "price": 5,
-      "background_image_url": "https://exemple.com/backgrounds/esplanade_jardins_partages.jpg",
-      "accessibility": [
-        "Entrée de plain-pied",
-        "Cheminements dégagés autour des parcelles de jardin"
-      ],
-      "practical_info": [
-        "Bancs et chaises disponibles",
-        "Point d’eau sur place",
-        "Toilettes du local associatif accessibles",
-        "Tri sélectif organisé pendant l’évènement"
-      ]
+      "currency": "EUR",
+      "background_image_url": "https://images.unsplash.com/photo-1505685296765-3a2736de412f",
+      "youtube_url": "https://www.youtube.com/watch?v=TcMBFSGVi1c",
+      "ticketing_url": "https://exemple.com/billetterie/7"
     }
   ]
 }

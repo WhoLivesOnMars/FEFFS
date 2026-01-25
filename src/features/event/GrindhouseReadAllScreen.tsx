@@ -4,7 +4,7 @@ import tw from "twrnc";
 import { router } from "expo-router";
 
 import moviesData from "../../../assets/movies.json";
-import eventsData from "../../../assets/summer-night-events.json";
+import eventsData from "../../../assets/grindhouse-events.json"; // ✅ adapte le nom si besoin
 
 import { ProgrammeItem } from "@/src/components/event/ProgrammeItem";
 import { YearChips } from "@/src/components/event/YearChips";
@@ -16,13 +16,15 @@ type Movie = {
   image_url?: string;
 };
 
-type SummerNightEvent = {
+type GrindhouseEvent = {
   id: number;
-  movie_id: number;
+  movie_ids: [number, number]; // ✅ double feature
   place: string;
   target_audience?: string;
-  screening_datetime: string;
+  start_at: string;            // ✅ ISO datetime
   year?: number;
+  price: number;               // ✅ prix affiché
+  currency?: "EUR";
 };
 
 type Row = {
@@ -33,6 +35,8 @@ type Row = {
   dateLabel: string;
   year: number;
   startsAt: string;
+  price?: number;
+  currency?: "EUR";
 };
 
 function getYearFromIso(iso: string) {
@@ -56,7 +60,7 @@ function formatProgrammeLine(iso: string) {
   return `${day} · ${time.replace(":", "h")}`;
 }
 
-export class SummerNightReadAllScreen extends Component<{}, { selectedYear: number }> {
+export class GrindhouseReadAllScreen extends Component<{}, { selectedYear: number }> {
   constructor(props: {}) {
     super(props);
     this.state = { selectedYear: 2026 };
@@ -69,36 +73,64 @@ export class SummerNightReadAllScreen extends Component<{}, { selectedYear: numb
   );
 
   private buildRows(): Row[] {
-    const events: SummerNightEvent[] = (eventsData as any).summer_night_events;
+    // ✅ adapte la clé si ton JSON est "neighborhood_events" ou "grindhouse_events"
+    const events: GrindhouseEvent[] =
+      (eventsData as any).neighborhood_events ??
+      (eventsData as any).grindhouse_events ??
+      [];
 
     return events
       .map((event) => {
-        const movie = this.moviesById.get(event.movie_id);
-        const year = event.year ?? getYearFromIso(event.screening_datetime);
+        const [m1, m2] = event.movie_ids;
+
+        // Choix UI : afficher "Film 1 + Film 2"
+        const movie1 = this.moviesById.get(m1);
+        const movie2 = this.moviesById.get(m2);
+
+        const title =
+          movie1?.name && movie2?.name
+            ? `${movie1.name} + ${movie2.name}`
+            : movie1?.name ?? movie2?.name ?? "Double séance";
+
+        // Choix UI : thumb = image du 1er film (simple)
+        const imageUrl = movie1?.image_url ?? movie2?.image_url;
+
+        const startsAt = event.start_at;
+        const year = event.year ?? getYearFromIso(startsAt);
 
         return {
           eventId: event.id,
-          title: movie?.name ?? "Film",
-          imageUrl: movie?.image_url,
+          title,
+          imageUrl,
           place: event.place,
-          startsAt: event.screening_datetime,
-          dateLabel: formatProgrammeLine(event.screening_datetime),
+          startsAt,
+          dateLabel: formatProgrammeLine(startsAt),
           year,
+          price: event.price,
+          currency: event.currency ?? "EUR",
         };
       })
       .sort((a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime());
   }
 
   private renderProgrammeItem = ({ item }: ListRenderItemInfo<Row>) => {
+    // ✅ Pour l’instant ProgrammeItem n’affiche pas le prix.
+    // On va l’ajouter au prochain step (sans casser SummerNight).
+    // Ici, on te met un suffix dans le "place" pour voir le prix direct.
+    const placeWithPrice =
+      typeof item.price === "number"
+        ? `${item.place} · ${item.price} ${item.currency ?? "EUR"}`
+        : item.place;
+
     return (
       <ProgrammeItem
         title={item.title}
         imageUrl={item.imageUrl}
         dateLabel={item.dateLabel}
-        place={item.place}
+        place={placeWithPrice}
         onPress={() =>
           router.push({
-            pathname: "/(event)/summer_night/[eventId]",
+            pathname: "/(event)/grindhouse/[eventId]",
             params: { eventId: String(item.eventId) },
           })
         }
@@ -113,8 +145,8 @@ export class SummerNightReadAllScreen extends Component<{}, { selectedYear: numb
     return (
       <View style={tw`flex-1 bg-white`}>
         <EventListHeader
-          title="Cinéma plein air"
-          subtitle="Programmation & archives"
+          title="Cinéma de quartier"
+          subtitle="Double séance & infos pratiques"
           onBack={() => router.back()}
         />
 
@@ -131,7 +163,7 @@ export class SummerNightReadAllScreen extends Component<{}, { selectedYear: numb
               <View style={tw`mt-2 px-4`}>
                 <Image
                   source={{
-                    uri: "https://strasbourgfestival.com/wp-content/uploads/2024/06/CPA2025_banner_700x370.png",
+                    uri: "https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=1200&q=60",
                   }}
                   resizeMode="cover"
                   style={tw`w-full h-40 rounded-2xl`}

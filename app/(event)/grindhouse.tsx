@@ -1,5 +1,5 @@
-import {GrindhouseScreen} from "@/src/features/event/GrindhouseScreen";
+import {GrindhouseReadAllScreen} from "@/src/features/event/GrindhouseReadAllScreen";
 
 export default function Grindhouse() {
-  return <GrindhouseScreen />;
+  return <GrindhouseReadAllScreen />;
 }
