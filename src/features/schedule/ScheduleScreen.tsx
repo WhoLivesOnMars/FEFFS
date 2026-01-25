@@ -16,7 +16,6 @@ import moviesData from "../../../assets/movies.json";
 import summerNightData from "../../../assets/summer-night-events.json";
 import grindhouseData from "../../../assets/grindhouse-events.json";
 
-import { BottomNavBar } from "@/src/components/navigation/BottomNavBar";
 const STORAGE_KEY = "@festival_planning";
 
 /* =======================
@@ -410,7 +409,6 @@ export class ScheduleScreen extends Component<{}, State> {
             </View>
           }
         />
-        <BottomNavBar />
       </View>
     );
   }

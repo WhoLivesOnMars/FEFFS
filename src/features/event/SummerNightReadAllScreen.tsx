@@ -9,7 +9,6 @@ import eventsData from "../../../assets/summer-night-events.json";
 import { ProgrammeItem } from "@/src/components/event/ProgrammeItem";
 import { YearChips } from "@/src/components/event/YearChips";
 import { EventListHeader } from "@/src/components/event/EventListHeader";
-import { BottomNavBar } from "@/src/components/navigation/BottomNavBar";
 
 type Movie = {
   id: number;
@@ -177,7 +176,6 @@ export class SummerNightReadAllScreen extends Component<{}, { selectedYear: numb
           }
           ListEmptyComponent={null}
         />
-        <BottomNavBar />
       </View>
     );
   }
