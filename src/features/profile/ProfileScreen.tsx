@@ -1,11 +1,38 @@
-import React from "react";
-import { View, Text, Pressable } from "react-native";
+import React, { useCallback, useState } from "react";
+import { View, Text, Pressable, Image } from "react-native";
 import tw from "twrnc";
-import { useAuth } from "@/src/context/AuthContext";
+import { Ionicons } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
 import { router } from "expo-router";
+
+import { useAuth } from "@/src/context/AuthContext";
+import { getUserProfile, UserProfile } from "@/src/services/profileService";
 
 export default function ProfileScreen() {
     const { user, logout } = useAuth();
+    const [profile, setProfile] = useState<UserProfile | null>(null);
+
+    const email = user?.email ?? "";
+
+    useFocusEffect(
+        useCallback(() => {
+            let isActive = true;
+
+            const load = async () => {
+                if (!email) return;
+                const data = await getUserProfile(email);
+                if (isActive) {
+                    setProfile(data ?? null);
+                }
+            };
+
+            load();
+
+            return () => {
+                isActive = false;
+            };
+        }, [email])
+    );
 
     const handleLogout = async () => {
         try {
@@ -16,23 +43,93 @@ export default function ProfileScreen() {
         }
     };
 
+    const fullName =
+        profile?.fullName && profile.fullName.trim().length > 0
+            ? profile.fullName
+            : "Nom non renseigné";
+
     return (
-        <View style={tw`flex-1 bg-white px-6 pt-10`}>
-            <Text style={tw`text-3xl font-bold mb-2`}>Profil</Text>
+        <View style={tw`flex-1 pt-10 px-6`}>
+            <View style={tw`items-center mb-8`}>
+                <View
+                    style={tw`w-28 h-28 rounded-full bg-orange-200 items-center justify-center mb-4`}
+                >
+                    {profile?.avatarUri ? (
+                        <Image
+                            source={{ uri: profile.avatarUri }}
+                            style={tw`w-28 h-28 rounded-full`}
+                        />
+                    ) : (
+                        <Ionicons name="person-outline" size={40} color="#f97316" />
+                    )}
+                </View>
 
-            <Text style={tw`text-gray-600 mb-8`}>
-                Connecté en tant que{" "}
-                <Text style={tw`font-semibold`}>
-                    {user?.email ?? "utilisateur inconnu"}
+                <Text style={tw`text-lg font-semibold text-slate-900 mb-1`}>
+                    {fullName}
                 </Text>
-            </Text>
+                <Text style={tw`text-sm text-gray-500`}>{email}</Text>
+            </View>
 
-            <Pressable
-                onPress={handleLogout}
-                style={tw`mt-4 h-12 rounded-2xl bg-orange-600 items-center justify-center`}
-            >
-                <Text style={tw`text-white font-semibold`}>Se déconnecter</Text>
-            </Pressable>
+            <View style={tw`gap-3`}>
+                <Pressable
+                    style={tw`flex-row items-center justify-between bg-[#EEEFF1] rounded-2xl px-4 py-3`}
+                    onPress={() => router.push("/(profile)/edit")}
+                >
+                    <View style={tw`flex-row items-center`}>
+                        <View
+                            style={tw`w-8 h-8 items-center justify-center mr-3`}
+                        >
+                            <Ionicons
+                                name="person-circle-outline"
+                                size={18}
+                                color="#f97316"
+                            />
+                        </View>
+                        <Text style={tw`text-sm text-slate-900 font-regular`}>
+                            Modifier le profil
+                        </Text>
+                    </View>
+                    <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
+                </Pressable>
+
+                <Pressable
+                    style={tw`flex-row items-center justify-between bg-[#EEEFF1] rounded-2xl px-4 py-3`}
+                    onPress={() => router.push("/(profile)/password")}
+                >
+                    <View style={tw`flex-row items-center`}>
+                        <View
+                            style={tw`w-8 h-8 items-center justify-center mr-3`}
+                        >
+                            <Ionicons
+                                name="lock-closed-outline"
+                                size={18}
+                                color="#f97316"
+                            />
+                        </View>
+                        <Text style={tw`text-sm text-slate-900 font-regular`}>
+                            Modifier le mot de passe
+                        </Text>
+                    </View>
+                    <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
+                </Pressable>
+
+                <Pressable
+                    style={tw`flex-row items-center justify-between bg-[#EEEFF1] rounded-2xl px-4 py-3`}
+                    onPress={() => router.push("/(profile)/settings")}
+                >
+                    <View style={tw`flex-row items-center`}>
+                        <View
+                            style={tw`w-8 h-8 items-center justify-center mr-3`}
+                        >
+                            <Ionicons name="settings-outline" size={18} color="#f97316" />
+                        </View>
+                        <Text style={tw`text-sm text-slate-900 font-regular`}>
+                            Paramètres généraux
+                        </Text>
+                    </View>
+                    <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
+                </Pressable>
+            </View>
         </View>
     );
 }

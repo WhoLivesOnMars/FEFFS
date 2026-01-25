@@ -76,6 +76,70 @@ export async function loginUser(email: string, password: string): Promise<Stored
     return user;
 }
 
+export async function updateUserEmail(oldEmail: string, newEmail: string): Promise<StoredUser> {
+    const users = await getUsers();
+
+    const oldNorm = normalizeEmail(oldEmail);
+    const newNorm = normalizeEmail(newEmail);
+
+    if (!newNorm) {
+        throw new Error("Veuillez renseigner l’e-mail.");
+    }
+
+    const existing = users.find(u => normalizeEmail(u.email) === newNorm);
+    if (existing) {
+        throw new Error("Un utilisateur avec cet e-mail existe déjà.");
+    }
+
+    const index = users.findIndex(u => normalizeEmail(u.email) === oldNorm);
+    if (index === -1) {
+        throw new Error("Utilisateur introuvable.");
+    }
+
+    const updatedUser: StoredUser = { ...users[index], email: newNorm };
+    const updatedUsers = [...users];
+    updatedUsers[index] = updatedUser;
+
+    await setUsers(updatedUsers);
+
+    const current: CurrentUser = { email: newNorm };
+    await AsyncStorage.setItem(CURRENT_USER_KEY, JSON.stringify(current));
+
+    return updatedUser;
+}
+
+export async function updatePassword(
+    email: string,
+    oldPassword: string,
+    newPassword: string
+): Promise<void> {
+    const users = await getUsers();
+    const emailNorm = normalizeEmail(email);
+
+    if (!emailNorm || !oldPassword || !newPassword) {
+        throw new Error("Veuillez renseigner tous les champs.");
+    }
+
+    const idx = users.findIndex(
+        (u) => normalizeEmail(u.email) === emailNorm
+    );
+
+    if (idx === -1) {
+        throw new Error("Utilisateur introuvable.");
+    }
+
+    if (users[idx].password !== oldPassword) {
+        throw new Error("Ancien mot de passe incorrect.");
+    }
+
+    if (newPassword.length < 8) {
+        throw new Error("Le nouveau mot de passe doit contenir au moins 8 caractères.");
+    }
+
+    users[idx] = { ...users[idx], password: newPassword };
+    await setUsers(users);
+}
+
 export async function getCurrentUser(): Promise<CurrentUser | null> {
     const json = await AsyncStorage.getItem(CURRENT_USER_KEY);
     if (!json) return null;
