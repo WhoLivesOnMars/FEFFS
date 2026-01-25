@@ -5,14 +5,18 @@ import {
   Pressable,
   SectionList,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import moviesData from "../../../assets/movies.json";
 import summerNightData from "../../../assets/summer-night-events.json";
 import grindhouseData from "../../../assets/grindhouse-events.json";
+
+const STORAGE_KEY = "@festival_planning";
 
 /* =======================
    TYPES
@@ -27,19 +31,16 @@ type Movie = {
 type SummerNightEvent = {
   id: number;
   place: string;
-  screening_datetime: string; // ISO
-  year?: number;
-
-  // ✅ si tu ajoutes un titre dans tes données un jour, il sera utilisé
+  screening_datetime: string;
   title?: string;
   name?: string;
 };
 
 type GrindhouseEvent = {
   id: number;
-  title: string; // ✅ déjà présent
+  title: string;
   tag?: string;
-  start_at: string; // ISO
+  start_at: string;
   place: string;
   movie_ids: [number, number];
   background_image_url?: string;
@@ -49,11 +50,9 @@ type PlanningItem = {
   key: string;
   kind: "summer_night" | "grindhouse";
   eventId: number;
-
-  title: string; // ✅ TITRE EVENT (pas film)
+  title: string;
   imageUrl?: string;
   place: string;
-
   startsAt: string;
   dateLabel: string;
 };
@@ -70,18 +69,15 @@ type PlanningSection = {
 
 function formatLine(iso: string) {
   const d = new Date(iso);
-
   const day = d.toLocaleDateString("fr-FR", {
     weekday: "short",
     day: "2-digit",
     month: "long",
   });
-
   const time = d.toLocaleTimeString("fr-FR", {
     hour: "2-digit",
     minute: "2-digit",
   });
-
   return `${day} · ${time.replace(":", "h")}`;
 }
 
@@ -90,10 +86,8 @@ function formatSectionTitle(iso: string) {
   const weekday = d.toLocaleDateString("fr-FR", { weekday: "short" });
   const day = String(d.getDate()).padStart(2, "0");
   const month = d.toLocaleDateString("fr-FR", { month: "long" });
-
   const weekdayCap = weekday.charAt(0).toUpperCase() + weekday.slice(1);
   const monthCap = month.charAt(0).toUpperCase() + month.slice(1);
-
   return `${weekdayCap} ${day} ${monthCap}`;
 }
 
@@ -106,7 +100,6 @@ function dateKey(iso: string) {
 }
 
 function isFutureOrToday(iso: string) {
-  // ✅ Filtre "à partir de maintenant"
   return new Date(iso).getTime() >= Date.now();
 }
 
@@ -114,39 +107,66 @@ function isFutureOrToday(iso: string) {
    SCREEN
 ======================= */
 
-export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
+type State = {
+  mode: "festival" | "my";
+  myPlanning: Set<string>;
+  loading: boolean;
+};
+
+export class ScheduleScreen extends Component<{}, State> {
   constructor(props: any) {
     super(props);
-    this.state = { mode: "festival" };
+    this.state = {
+      mode: "festival",
+      myPlanning: new Set(),
+      loading: true,
+    };
   }
+
+  componentDidMount() {
+    this.loadPlanning();
+    // Recharger toutes les 500ms pour détecter les changements
+    this.interval = setInterval(() => {
+      this.loadPlanning();
+    }, 500);
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
+  private interval: any;
+
+  private loadPlanning = async () => {
+    try {
+      const stored = await AsyncStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const planningArray = JSON.parse(stored);
+        this.setState({ myPlanning: new Set(planningArray) });
+      }
+    } catch (error) {
+      console.error("Erreur chargement planning:", error);
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
 
   private moviesById = new Map<number, Movie>(
     (moviesData as any).movies.map((m: Movie) => [m.id, m])
   );
 
-  // 🔹 fake planning utilisateur (plus tard AsyncStorage)
-  private myPlanning = new Set<string>(["summer:1", "grindhouse:1"]);
-
   private buildItems(): PlanningItem[] {
     const items: PlanningItem[] = [];
 
-    /* ---- Plein air (Summer Night) ---- */
     const summerEvents: SummerNightEvent[] =
       (summerNightData as any).summer_night_events ?? [];
 
     summerEvents.forEach((e) => {
-      // ✅ Filtre futur
       if (!isFutureOrToday(e.screening_datetime)) return;
 
-      // ✅ Titre EVENT (pas film)
-      // -> tes données plein air n’ont pas "title", donc fallback clair
-      const eventTitle =
-        e.title ??
-        e.name ??
-        "Cinéma plein air";
-
-      // ✅ image : on peut garder l’image du film pour le thumb
-      // (mais le texte = event)
+      const eventTitle = e.title ?? e.name ?? "Cinéma plein air";
       const movie = (e as any).movie_id
         ? this.moviesById.get((e as any).movie_id)
         : undefined;
@@ -163,20 +183,15 @@ export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
       });
     });
 
-    /* ---- Cinéma de quartier (Grindhouse) ---- */
     const grindhouseEvents: GrindhouseEvent[] =
       (grindhouseData as any).neighborhood_events ??
       (grindhouseData as any).grindhouse_events ??
       [];
 
     grindhouseEvents.forEach((e) => {
-      // ✅ Filtre futur
       if (!isFutureOrToday(e.start_at)) return;
 
-      // ✅ Titre EVENT (déjà présent)
       const eventTitle = e.title ?? "Cinéma de quartier";
-
-      // ✅ image : on garde une image de film ou background event
       const movie1 = this.moviesById.get(e.movie_ids?.[0]);
       const movie2 = this.moviesById.get(e.movie_ids?.[1]);
 
@@ -192,7 +207,6 @@ export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
       });
     });
 
-    // tri chronologique
     return items.sort(
       (a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime()
     );
@@ -203,7 +217,6 @@ export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
 
     items.forEach((item) => {
       const key = dateKey(item.startsAt);
-
       if (!map.has(key)) {
         map.set(key, {
           title: formatSectionTitle(item.startsAt),
@@ -226,7 +239,7 @@ export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
       return this.buildSections(all);
     }
 
-    const mine = all.filter((i) => this.myPlanning.has(i.key));
+    const mine = all.filter((i) => this.state.myPlanning.has(i.key));
     return this.buildSections(mine);
   }
 
@@ -259,7 +272,6 @@ export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
         </View>
 
         <View style={tw`ml-3 flex-1`}>
-          {/* ✅ TITRE EVENT */}
           <Text style={tw`font-bold text-slate-900`} numberOfLines={1}>
             {item.title}
           </Text>
@@ -285,6 +297,14 @@ export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={tw`flex-1 bg-white items-center justify-center`}>
+          <ActivityIndicator size="large" color="#f97316" />
+        </View>
+      );
+    }
+
     const sections = this.getSections();
 
     return (
@@ -382,7 +402,9 @@ export class ScheduleScreen extends Component<{}, { mode: "festival" | "my" }> {
                 Aucune diffusion à venir
               </Text>
               <Text style={tw`mt-2 text-slate-600`}>
-                Revenez plus tard pour découvrir les prochaines séances.
+                {this.state.mode === "my"
+                  ? "Ajoutez des événements à votre planning pour les retrouver ici."
+                  : "Revenez plus tard pour découvrir les prochaines séances."}
               </Text>
             </View>
           }
