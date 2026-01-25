@@ -97,6 +97,52 @@
       "background_image_url": "https://images.unsplash.com/photo-1505685296765-3a2736de412f",
       "youtube_url": "https://www.youtube.com/watch?v=TcMBFSGVi1c",
       "ticketing_url": "https://exemple.com/billetterie/7"
-    }
+    },
+    {
+    "id": 8,
+    "title": "Cinéma de quartier",
+    "tag": "Évènement",
+    "start_at": "2025-06-26T21:45:00+02:00",
+    "place": "Place Broglie, Strasbourg",
+    "target_audience": "Cinéphiles du centre-ville",
+    "movie_ids": [16, 17],
+    "price": 6,
+    "currency": "EUR",
+    "background_image_url": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4",
+    "youtube_url": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+    "ticketing_url": "https://exemple.com/billetterie/8"
+  },
+{
+  "id": 9,
+  "title": "Nuit Grindhouse",
+  "tag": "Thriller",
+  "start_at": "2026-07-10T22:00:00+02:00",
+  "place": "Cour intérieure, Grande Île, Strasbourg",
+  "target_audience": "Amateurs de sensations fortes",
+  "movie_ids": [18, 19],
+  "price": 7,
+  "currency": "EUR",
+  "background_image_url": "https://images.unsplash.com/photo-1517602302552-471fe67acf66",
+  "youtube_url": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+  "ticketing_url": "https://exemple.com/billetterie/9"
+},
+{
+  "id": 10,
+  "title": "Double séance rétro",
+  "tag": "Gastronomie",
+  "start_at": "2026-08-21T21:30:00+02:00",
+  "place": "Place d’Austerlitz, Strasbourg",
+  "target_audience": "Habitants & commerçants",
+  "movie_ids": [20, 15],
+  "price": 8,
+  "currency": "EUR",
+  "background_image_url": "https://images.unsplash.com/photo-1505685296765-3a2736de412f",
+  "youtube_url": "https://www.youtube.com/watch?v=6ZfuNTqbHE8",
+  "ticketing_url": "https://exemple.com/billetterie/10"
+}
+
+
+
+
   ]
 }

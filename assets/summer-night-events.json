@@ -271,6 +271,60 @@
         "Bar avec boissons locales",
         "Signalétique éco-responsable et points de tri"
       ]
-    }
+    },
+    {
+  "id": 16,
+  "place": "Parc de la Citadelle, Strasbourg",
+  "target_audience": "Public familial",
+  "movie_id": 16,
+  "year": 2026,
+  "screening_datetime": "2026-07-11T21:45:00",
+  "accessibility": [
+    "Chemins stabilisés accessibles",
+    "Zone PMR proche de l’écran",
+    "Toilettes accessibles à proximité"
+  ],
+  "practical_info": [
+    "Buvette associative sur place",
+    "Prêt de plaids (quantités limitées)",
+    "Accès tram et vélo"
+  ]
+},
+{
+  "id": 17,
+  "place": "Berges du Rhin, Strasbourg",
+  "target_audience": "Jeunes adultes & amis",
+  "movie_id": 18,
+  "year": 2026,
+  "screening_datetime": "2026-07-25T22:00:00",
+  "accessibility": [
+    "Accès sans marche depuis les allées principales",
+    "Emplacements réservés PMR",
+    "Signalétique lumineuse de sécurité"
+  ],
+  "practical_info": [
+    "Food-truck local",
+    "Conseillé d’apporter une couverture",
+    "Évènement maintenu si météo favorable"
+  ]
+},
+{
+  "id": 18,
+  "place": "Cour de la Médiathèque, Lille",
+  "target_audience": "Cinéphiles",
+  "movie_id": 17,
+  "year": 2026,
+  "screening_datetime": "2026-08-08T21:30:00",
+  "accessibility": [
+    "Rampe d’accès depuis le hall",
+    "Assises faciles d’accès",
+    "Toilettes accessibles"
+  ],
+  "practical_info": [
+    "Coussins disponibles",
+    "Zone abritée en cas de légère pluie",
+    "Vestiaire gratuit"
+  ]
+}
   ]
 }

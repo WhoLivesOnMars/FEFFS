@@ -194,6 +194,71 @@
       "main_cast": ["Louna Perez", "Elias Kramer"],
       "genres": ["Science-fiction", "Drame"],
       "versions": ["VF", "VOSTFR", "VOSTEN"]
-    }
+    },
+    {
+      "id": 16,
+      "name": "Néon Cassette",
+      "description": "Dans une ville noyée de publicités lumineuses, une monteuse vidéo découvre des messages cachés dans les écrans du métro. Une chasse au signal commence.",
+      "funders": ["Studio Parallaxe", "Programme Innovation & Culture"],
+      "image_url": "https://picsum.photos/seed/summer-night-16/768/432",
+      "original_release_date": "2026-03-18",
+      "duration": "1h43",
+      "directors": ["Lina Kermorvan"],
+      "main_cast": ["Nora Sen", "Hugo Lemaître", "Yara Benahmed"],
+      "genres": ["Thriller", "Mystère"],
+      "versions": ["VF", "VOSTFR"]
+    },
+    {
+      "id": 17,
+      "name": "Le Dernier Projecteur",
+      "description": "Un projectionniste solitaire restaure un cinéma abandonné. À chaque séance, le film semble anticiper les choix du public…",
+      "funders": ["Cinémathèque Européenne", "Programme Mémoire & Patrimoine"],
+      "image_url": "https://picsum.photos/seed/summer-night-17/768/432",
+      "original_release_date": "2026-04-08",
+      "duration": "2h01",
+      "directors": ["Isabelle Kern"],
+      "main_cast": ["Mila Fontaine", "Nassim Belaïd"],
+      "genres": ["Fantastique", "Drame"],
+      "versions": ["VF", "VOSTFR"]
+    },
+    {
+      "id": 18,
+      "name": "Ruelle 404",
+      "description": "Une étudiante en cyber-sécurité suit une piste qui mène à une ruelle introuvable sur les plans. Plus elle s’approche, plus la ville se reconfigure.",
+      "funders": ["Indie Screen Labs", "Fonds Européen Sci-Fi"],
+      "image_url": "https://picsum.photos/seed/summer-night-18/768/432",
+      "original_release_date": "2026-06-12",
+      "duration": "1h49",
+      "directors": ["Chloé Tanaka"],
+      "main_cast": ["Aya Mori", "Samuel Roche", "Alexandre Nguyen"],
+      "genres": ["Science-fiction", "Thriller"],
+      "versions": ["VF", "VOSTFR", "VOSTEN"]
+    },
+    {
+  "id": 19,
+  "name": "La Salle des Échos",
+  "description": "Dans un immeuble ancien, des voix apparaissent dans les conduits. Elles semblent rejouer des scènes qui n’ont jamais eu lieu…",
+  "funders": ["Nuit Blanche Productions", "Scream Factory Europe"],
+  "image_url": "https://picsum.photos/seed/summer-night-19/768/432",
+  "original_release_date": "2026-10-02",
+  "duration": "1h45",
+  "directors": ["Adrien Legras"],
+  "main_cast": ["Léna Carrel", "Rachid Benyamina"],
+  "genres": ["Horreur", "Psychologique"],
+  "versions": ["VF", "VOSTFR"]
+},
+{
+  "id": 20,
+  "name": "Paprika Express",
+  "description": "Une cheffe et un livreur à vélo traversent la ville pour sauver un service impossible. Une comédie nerveuse, tendre et très food.",
+  "funders": ["Fondation Cinéma & Jeunesse", "Région Grand Est"],
+  "image_url": "https://picsum.photos/seed/summer-night-20/768/432",
+  "original_release_date": "2026-05-27",
+  "duration": "1h36",
+  "directors": ["Nora Belkacem"],
+  "main_cast": ["Élodie Laurent", "Théo Ricard", "Anna Le Gall"],
+  "genres": ["Comédie", "Social"],
+  "versions": ["VF", "VOSTEN"]
+}
   ]
 }
