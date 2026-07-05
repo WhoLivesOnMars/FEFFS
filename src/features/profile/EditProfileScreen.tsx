@@ -118,98 +118,106 @@ export default function EditProfileScreen() {
         );
     }
 
+    const content = (
+        <ScrollView
+            style={tw`flex-1`}
+            contentContainerStyle={tw`flex-grow px-6 pt-10 pb-10`}
+            keyboardShouldPersistTaps="handled"
+        >
+            <View style={tw`items-center mb-8`}>
+                <Pressable
+                    style={tw`w-28 h-28 rounded-full bg-orange-200 items-center justify-center`}
+                    onPress={pickImage}
+                >
+                    {avatarUri ? (
+                        <Image
+                            source={{ uri: avatarUri }}
+                            style={tw`w-28 h-28 rounded-full`}
+                        />
+                    ) : (
+                        <Ionicons name="person-outline" size={40} color="#f97316" />
+                    )}
+
+                    <View
+                        style={tw`absolute bottom-1 right-1 w-7 h-7 rounded-full bg-orange-500 items-center justify-center`}
+                    >
+                        <Ionicons name="camera-outline" size={16} color="#ffffff" />
+                    </View>
+                </Pressable>
+            </View>
+
+            <View style={tw`mb-4`}>
+                <Text style={tw`mb-1 text-xs text-gray-500`}>Nom complet</Text>
+                <View
+                    style={tw`rounded-2xl px-4 h-12 bg-white ${
+                        nameFocused
+                            ? "border-2 border-orange-500"
+                            : "border border-gray-200"
+                    }`}
+                >
+                    <TextInput
+                        ref={nameInputRef}
+                        style={tw`flex-1 text-gray-900`}
+                        placeholder="Nom complet"
+                        placeholderTextColor="#9CA3AF"
+                        value={fullName}
+                        onChangeText={setFullName}
+                        onFocus={() => setNameFocused(true)}
+                        onBlur={() => setNameFocused(false)}
+                        returnKeyType="done"
+                    />
+                </View>
+            </View>
+
+            <View style={tw`mb-8`}>
+                <Text style={tw`mb-1 text-xs text-gray-500`}>E-mail</Text>
+                <View
+                    style={tw`rounded-2xl px-4 h-12 bg-white ${
+                        emailFocused ? "border-2 border-orange-500" : "border border-gray-200"
+                    } justify-center`}
+                >
+                    <TextInput
+                        style={tw`text-gray-900`}
+                        placeholder="E-mail"
+                        placeholderTextColor="#9CA3AF"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        value={emailField}
+                        onChangeText={setEmailField}
+                        onFocus={() => setEmailFocused(true)}
+                        onBlur={() => setEmailFocused(false)}
+                        returnKeyType="done"
+                    />
+                </View>
+            </View>
+
+            <Pressable
+                onPress={handleSave}
+                disabled={saving}
+                style={tw`mt-auto h-14 rounded-2xl bg-orange-600 items-center justify-center ${
+                    saving ? "opacity-70" : "opacity-100"
+                }`}
+            >
+                <Text style={tw`text-white font-semibold`}>
+                    {saving ? "Enregistrement..." : "Enregistrer les modifications"}
+                </Text>
+            </Pressable>
+        </ScrollView>
+    );
+
     return (
         <KeyboardAvoidingView
             style={tw`flex-1`}
             behavior={Platform.OS === "ios" ? "padding" : undefined}
         >
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <ScrollView
-                    style={tw`flex-1`}
-                    contentContainerStyle={tw`flex-grow px-6 pt-10 pb-10`}
-                    keyboardShouldPersistTaps="handled"
-                >
-                    <View style={tw`items-center mb-8`}>
-                        <Pressable
-                            style={tw`w-28 h-28 rounded-full bg-orange-200 items-center justify-center`}
-                            onPress={pickImage}
-                        >
-                            {avatarUri ? (
-                                <Image
-                                    source={{ uri: avatarUri }}
-                                    style={tw`w-28 h-28 rounded-full`}
-                                />
-                            ) : (
-                                <Ionicons name="person-outline" size={40} color="#f97316" />
-                            )}
-
-                            <View
-                                style={tw`absolute bottom-1 right-1 w-7 h-7 rounded-full bg-orange-500 items-center justify-center`}
-                            >
-                                <Ionicons name="camera-outline" size={16} color="#ffffff" />
-                            </View>
-                        </Pressable>
-                    </View>
-
-                    <View style={tw`mb-4`}>
-                        <Text style={tw`mb-1 text-xs text-gray-500`}>Nom complet</Text>
-                        <View
-                            style={tw`rounded-2xl px-4 h-12 bg-white ${
-                                nameFocused
-                                    ? "border-2 border-orange-500"
-                                    : "border border-gray-200"
-                            }`}
-                        >
-                            <TextInput
-                                ref={nameInputRef}
-                                style={tw`flex-1 text-gray-900`}
-                                placeholder="Nom complet"
-                                placeholderTextColor="#9CA3AF"
-                                value={fullName}
-                                onChangeText={setFullName}
-                                onFocus={() => setNameFocused(true)}
-                                onBlur={() => setNameFocused(false)}
-                                returnKeyType="done"
-                            />
-                        </View>
-                    </View>
-
-                    <View style={tw`mb-8`}>
-                        <Text style={tw`mb-1 text-xs text-gray-500`}>E-mail</Text>
-                        <View
-                            style={tw`rounded-2xl px-4 h-12 bg-white ${
-                                emailFocused ? "border-2 border-orange-500" : "border border-gray-200"
-                            } justify-center`}
-                        >
-                            <TextInput
-                                style={tw`text-gray-900`}
-                                placeholder="E-mail"
-                                placeholderTextColor="#9CA3AF"
-                                keyboardType="email-address"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                value={emailField}
-                                onChangeText={setEmailField}
-                                onFocus={() => setEmailFocused(true)}
-                                onBlur={() => setEmailFocused(false)}
-                                returnKeyType="done"
-                            />
-                        </View>
-                    </View>
-
-                    <Pressable
-                        onPress={handleSave}
-                        disabled={saving}
-                        style={tw`mt-auto h-14 rounded-2xl bg-orange-600 items-center justify-center ${
-                            saving ? "opacity-70" : "opacity-100"
-                        }`}
-                    >
-                        <Text style={tw`text-white font-semibold`}>
-                            {saving ? "Enregistrement..." : "Enregistrer les modifications"}
-                        </Text>
-                    </Pressable>
-                </ScrollView>
-            </TouchableWithoutFeedback>
+            {Platform.OS === "web" ? (
+                content
+            ) : (
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                    {content}
+                </TouchableWithoutFeedback>
+            )}
         </KeyboardAvoidingView>
     );
 }

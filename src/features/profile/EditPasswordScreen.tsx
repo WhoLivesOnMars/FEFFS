@@ -72,146 +72,154 @@ export default function EditPasswordScreen() {
         }
     };
 
+    const content = (
+        <ScrollView
+            style={tw`flex-1`}
+            contentContainerStyle={tw`flex-grow px-6 pt-10 pb-10 justify-between`}
+            keyboardShouldPersistTaps="handled"
+        >
+            <View style={tw`mt-6`}>
+                <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
+                    Ancien mot de passe
+                </Text>
+                <View
+                    style={tw`mb-4 flex-row items-center rounded-2xl px-4 h-14 bg-white ${
+                        oldFocused ? "border-2 border-orange-600" : "border border-gray-200"
+                    }`}
+                >
+                    <Ionicons
+                        name="lock-closed-outline"
+                        size={20}
+                        color={oldFocused ? "#F97316" : "#9CA3AF"}
+                    />
+                    <TextInput
+                        style={tw`flex-1 ml-3 text-gray-900`}
+                        placeholder="Entrez votre ancien mot de passe"
+                        placeholderTextColor="#9CA3AF"
+                        secureTextEntry={oldHidden}
+                        value={oldPassword}
+                        onChangeText={setOldPassword}
+                        onFocus={() => setOldFocused(true)}
+                        onBlur={() => setOldFocused(false)}
+                        returnKeyType="next"
+                        onSubmitEditing={() => newPasswordRef.current?.focus()}
+                    />
+                    <Pressable onPress={() => setOldHidden(v => !v)} hitSlop={10}>
+                        <Ionicons
+                            name={oldHidden ? "eye-outline" : "eye-off-outline"}
+                            size={22}
+                            color="#9CA3AF"
+                        />
+                    </Pressable>
+                </View>
+
+                <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
+                    Nouveau mot de passe
+                </Text>
+                <View
+                    style={tw`mb-4 flex-row items-center rounded-2xl px-4 h-14 bg-white ${
+                        newFocused ? "border-2 border-orange-600" : "border border-gray-200"
+                    }`}
+                >
+                    <Ionicons
+                        name="lock-closed-outline"
+                        size={20}
+                        color={newFocused ? "#F97316" : "#9CA3AF"}
+                    />
+                    <TextInput
+                        ref={newPasswordRef}
+                        style={tw`flex-1 ml-3 text-gray-900`}
+                        placeholder="Entrez votre nouveau mot de passe"
+                        placeholderTextColor="#9CA3AF"
+                        secureTextEntry={newHidden}
+                        value={newPassword}
+                        onChangeText={setNewPassword}
+                        onFocus={() => setNewFocused(true)}
+                        onBlur={() => setNewFocused(false)}
+                        returnKeyType="next"
+                        onSubmitEditing={() => confirmPasswordRef.current?.focus()}
+                    />
+                    <Pressable onPress={() => setNewHidden(v => !v)} hitSlop={10}>
+                        <Ionicons
+                            name={newHidden ? "eye-outline" : "eye-off-outline"}
+                            size={22}
+                            color="#9CA3AF"
+                        />
+                    </Pressable>
+                </View>
+
+                <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
+                    Confirmer le nouveau mot de passe
+                </Text>
+                <View
+                    style={tw`mb-2 flex-row items-center rounded-2xl px-4 h-14 bg-white ${
+                        confirmFocused
+                            ? "border-2 border-orange-600"
+                            : "border border-gray-200"
+                    }`}
+                >
+                    <Ionicons
+                        name="lock-closed-outline"
+                        size={20}
+                        color={confirmFocused ? "#F97316" : "#9CA3AF"}
+                    />
+                    <TextInput
+                        ref={confirmPasswordRef}
+                        style={tw`flex-1 ml-3 text-gray-900`}
+                        placeholder="Confirmez le nouveau mot de passe"
+                        placeholderTextColor="#9CA3AF"
+                        secureTextEntry={confirmHidden}
+                        value={confirmPassword}
+                        onChangeText={setConfirmPassword}
+                        onFocus={() => setConfirmFocused(true)}
+                        onBlur={() => setConfirmFocused(false)}
+                        returnKeyType="done"
+                        onSubmitEditing={handleSave}
+                    />
+                    <Pressable onPress={() => setConfirmHidden(v => !v)} hitSlop={10}>
+                        <Ionicons
+                            name={confirmHidden ? "eye-outline" : "eye-off-outline"}
+                            size={22}
+                            color="#9CA3AF"
+                        />
+                    </Pressable>
+                </View>
+
+                {error && (
+                    <Text style={tw`mt-3 text-red-500`}>{error}</Text>
+                )}
+
+                {success && (
+                    <Text style={tw`mt-3 text-green-600`}>{success}</Text>
+                )}
+            </View>
+
+            <Pressable
+                style={tw`mt-auto h-14 rounded-2xl bg-orange-600 items-center justify-center ${
+                    submitting ? "opacity-50" : "opacity-100"
+                }`}
+                onPress={handleSave}
+                disabled={submitting}
+            >
+                <Text style={tw`text-white font-semibold`}>
+                    {submitting ? "En cours..." : "Enregistrer les modifications"}
+                </Text>
+            </Pressable>
+        </ScrollView>
+    );
+
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
             behavior={Platform.OS === "ios" ? "padding" : undefined}
         >
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <ScrollView
-                    style={tw`flex-1`}
-                    contentContainerStyle={tw`flex-grow px-6 pt-10 pb-10 justify-between`}
-                    keyboardShouldPersistTaps="handled"
-                >
-                    <View style={tw`mt-6`}>
-                        <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
-                            Ancien mot de passe
-                        </Text>
-                        <View
-                            style={tw`mb-4 flex-row items-center rounded-2xl px-4 h-14 bg-white ${
-                                oldFocused ? "border-2 border-orange-600" : "border border-gray-200"
-                            }`}
-                        >
-                            <Ionicons
-                                name="lock-closed-outline"
-                                size={20}
-                                color={oldFocused ? "#F97316" : "#9CA3AF"}
-                            />
-                            <TextInput
-                                style={tw`flex-1 ml-3 text-gray-900`}
-                                placeholder="Entrez votre ancien mot de passe"
-                                placeholderTextColor="#9CA3AF"
-                                secureTextEntry={oldHidden}
-                                value={oldPassword}
-                                onChangeText={setOldPassword}
-                                onFocus={() => setOldFocused(true)}
-                                onBlur={() => setOldFocused(false)}
-                                returnKeyType="next"
-                                onSubmitEditing={() => newPasswordRef.current?.focus()}
-                            />
-                            <Pressable onPress={() => setOldHidden(v => !v)} hitSlop={10}>
-                                <Ionicons
-                                    name={oldHidden ? "eye-outline" : "eye-off-outline"}
-                                    size={22}
-                                    color="#9CA3AF"
-                                />
-                            </Pressable>
-                        </View>
-
-                        <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
-                            Nouveau mot de passe
-                        </Text>
-                        <View
-                            style={tw`mb-4 flex-row items-center rounded-2xl px-4 h-14 bg-white ${
-                                newFocused ? "border-2 border-orange-600" : "border border-gray-200"
-                            }`}
-                        >
-                            <Ionicons
-                                name="lock-closed-outline"
-                                size={20}
-                                color={newFocused ? "#F97316" : "#9CA3AF"}
-                            />
-                            <TextInput
-                                ref={newPasswordRef}
-                                style={tw`flex-1 ml-3 text-gray-900`}
-                                placeholder="Entrez votre nouveau mot de passe"
-                                placeholderTextColor="#9CA3AF"
-                                secureTextEntry={newHidden}
-                                value={newPassword}
-                                onChangeText={setNewPassword}
-                                onFocus={() => setNewFocused(true)}
-                                onBlur={() => setNewFocused(false)}
-                                returnKeyType="next"
-                                onSubmitEditing={() => confirmPasswordRef.current?.focus()}
-                            />
-                            <Pressable onPress={() => setNewHidden(v => !v)} hitSlop={10}>
-                                <Ionicons
-                                    name={newHidden ? "eye-outline" : "eye-off-outline"}
-                                    size={22}
-                                    color="#9CA3AF"
-                                />
-                            </Pressable>
-                        </View>
-
-                        <Text style={tw`mb-2 text-xs font-medium text-gray-500`}>
-                            Confirmer le nouveau mot de passe
-                        </Text>
-                        <View
-                            style={tw`mb-2 flex-row items-center rounded-2xl px-4 h-14 bg-white ${
-                                confirmFocused
-                                    ? "border-2 border-orange-600"
-                                    : "border border-gray-200"
-                            }`}
-                        >
-                            <Ionicons
-                                name="lock-closed-outline"
-                                size={20}
-                                color={confirmFocused ? "#F97316" : "#9CA3AF"}
-                            />
-                            <TextInput
-                                ref={confirmPasswordRef}
-                                style={tw`flex-1 ml-3 text-gray-900`}
-                                placeholder="Confirmez le nouveau mot de passe"
-                                placeholderTextColor="#9CA3AF"
-                                secureTextEntry={confirmHidden}
-                                value={confirmPassword}
-                                onChangeText={setConfirmPassword}
-                                onFocus={() => setConfirmFocused(true)}
-                                onBlur={() => setConfirmFocused(false)}
-                                returnKeyType="done"
-                                onSubmitEditing={handleSave}
-                            />
-                            <Pressable onPress={() => setConfirmHidden(v => !v)} hitSlop={10}>
-                                <Ionicons
-                                    name={confirmHidden ? "eye-outline" : "eye-off-outline"}
-                                    size={22}
-                                    color="#9CA3AF"
-                                />
-                            </Pressable>
-                        </View>
-
-                        {error && (
-                            <Text style={tw`mt-3 text-red-500`}>{error}</Text>
-                        )}
-
-                        {success && (
-                            <Text style={tw`mt-3 text-green-600`}>{success}</Text>
-                        )}
-                    </View>
-
-                    <Pressable
-                        style={tw`mt-auto h-14 rounded-2xl bg-orange-600 items-center justify-center ${
-                            submitting ? "opacity-50" : "opacity-100"
-                        }`}
-                        onPress={handleSave}
-                        disabled={submitting}
-                    >
-                        <Text style={tw`text-white font-semibold`}>
-                            {submitting ? "En cours..." : "Enregistrer les modifications"}
-                        </Text>
-                    </Pressable>
-                </ScrollView>
-            </TouchableWithoutFeedback>
+            {Platform.OS === "web" ? (
+                content
+            ) : (
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                    {content}
+                </TouchableWithoutFeedback>
+            )}
         </KeyboardAvoidingView>
     );
 }

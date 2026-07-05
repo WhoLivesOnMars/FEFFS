@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { Stack, useSegments } from "expo-router";
 import { AuthProvider } from "../src/context/AuthContext";
 import { ThemeProvider } from "../src/context/ThemeContext";
@@ -21,8 +21,20 @@ function RootLayoutInner() {
 
     return (
         <View style={{ flex: 1 }}>
-            <Stack />
+            <Stack screenOptions={{ headerShown: false }} />
             {!hideBottomNav && <BottomNavBar />}
+        </View>
+    );
+}
+
+function WebPhoneFrame({ children }: { children: React.ReactNode }) {
+    if (Platform.OS !== "web") {
+        return <>{children}</>;
+    }
+
+    return (
+        <View style={styles.webPage}>
+            <View style={styles.phoneFrame}>{children}</View>
         </View>
     );
 }
@@ -31,8 +43,31 @@ export default function RootLayout() {
     return (
         <AuthProvider>
             <ThemeProvider>
-                <RootLayoutInner />
+                <WebPhoneFrame>
+                    <RootLayoutInner />
+                </WebPhoneFrame>
             </ThemeProvider>
         </AuthProvider>
     );
 }
+
+const styles = StyleSheet.create({
+    webPage: {
+        flex: 1,
+        minHeight: "100vh" as any,
+        backgroundColor: "#111111",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 24,
+    },
+    phoneFrame: {
+        width: "100%",
+        maxWidth: 390,
+        height: 844,
+        maxHeight: "calc(100vh - 48px)" as any,
+        backgroundColor: "#ffffff",
+        borderRadius: 36,
+        overflow: "hidden",
+        boxShadow: "0 24px 80px rgba(0, 0, 0, 0.45)" as any,
+    },
+});
