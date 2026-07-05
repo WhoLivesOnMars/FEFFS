@@ -72,6 +72,11 @@ export default function EditPasswordScreen() {
         }
     };
 
+    const webInputReset =
+    Platform.OS === "web"
+        ? ({ outlineStyle: "none", outlineWidth: 0 } as any)
+        : null;
+
     const content = (
         <ScrollView
             style={tw`flex-1`}
@@ -93,7 +98,7 @@ export default function EditPasswordScreen() {
                         color={oldFocused ? "#F97316" : "#9CA3AF"}
                     />
                     <TextInput
-                        style={tw`flex-1 ml-3 text-gray-900`}
+                        style={[tw`flex-1 ml-3 text-gray-900`, webInputReset]}
                         placeholder="Entrez votre ancien mot de passe"
                         placeholderTextColor="#9CA3AF"
                         secureTextEntry={oldHidden}
@@ -128,7 +133,7 @@ export default function EditPasswordScreen() {
                     />
                     <TextInput
                         ref={newPasswordRef}
-                        style={tw`flex-1 ml-3 text-gray-900`}
+                        style={[tw`flex-1 ml-3 text-gray-900`, webInputReset]}
                         placeholder="Entrez votre nouveau mot de passe"
                         placeholderTextColor="#9CA3AF"
                         secureTextEntry={newHidden}
@@ -165,7 +170,7 @@ export default function EditPasswordScreen() {
                     />
                     <TextInput
                         ref={confirmPasswordRef}
-                        style={tw`flex-1 ml-3 text-gray-900`}
+                        style={[tw`flex-1 ml-3 text-gray-900`, webInputReset]}
                         placeholder="Confirmez le nouveau mot de passe"
                         placeholderTextColor="#9CA3AF"
                         secureTextEntry={confirmHidden}

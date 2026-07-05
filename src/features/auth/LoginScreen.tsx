@@ -46,6 +46,11 @@ export default function LoginScreen({ onLoggedIn, onGoToRegister, onForgotPasswo
         }
     };
 
+    const webInputReset =
+    Platform.OS === "web"
+        ? ({ outlineStyle: "none", outlineWidth: 0 } as any)
+        : null;
+
     const content = (
         <ScrollView
             style={tw`flex-1`}
@@ -80,7 +85,7 @@ export default function LoginScreen({ onLoggedIn, onGoToRegister, onForgotPasswo
                         color={emailFocused ? "#F97316" : "#9CA3AF"}
                     />
                     <TextInput
-                        style={tw`flex-1 ml-3 text-gray-900`}
+                        style={[tw`flex-1 ml-3 text-gray-900`, webInputReset]}
                         placeholder="Entrez votre adresse e-mail"
                         placeholderTextColor="#9CA3AF"
                         keyboardType="email-address"
@@ -109,7 +114,7 @@ export default function LoginScreen({ onLoggedIn, onGoToRegister, onForgotPasswo
                     />
                     <TextInput
                         ref={passwordRef}
-                        style={tw`flex-1 ml-3 text-gray-900`}
+                        style={[tw`flex-1 ml-3 text-gray-900`, webInputReset]}
                         placeholder="Entrez votre mot de passe"
                         placeholderTextColor="#9CA3AF"
                         secureTextEntry={passwordHidden}

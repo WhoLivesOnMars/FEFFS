@@ -118,6 +118,11 @@ export default function EditProfileScreen() {
         );
     }
 
+    const webInputReset =
+    Platform.OS === "web"
+        ? ({ outlineStyle: "none", outlineWidth: 0 } as any)
+        : null;
+
     const content = (
         <ScrollView
             style={tw`flex-1`}
@@ -157,7 +162,7 @@ export default function EditProfileScreen() {
                 >
                     <TextInput
                         ref={nameInputRef}
-                        style={tw`flex-1 text-gray-900`}
+                        style={[tw`flex-1 text-gray-900`, webInputReset]}
                         placeholder="Nom complet"
                         placeholderTextColor="#9CA3AF"
                         value={fullName}
@@ -177,7 +182,7 @@ export default function EditProfileScreen() {
                     } justify-center`}
                 >
                     <TextInput
-                        style={tw`text-gray-900`}
+                        style={[tw`text-gray-900`, webInputReset]}
                         placeholder="E-mail"
                         placeholderTextColor="#9CA3AF"
                         keyboardType="email-address"
